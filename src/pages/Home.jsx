@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { projectsData } from '../data/projectsData';
 import { ProjectCard } from '../components/ProjectCard';
 import { RotativeGallery } from '../components/RotativeGallery';
 
 export const Home = () => {
+  const [imageError, setImageError] = useState(false);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -18,10 +19,10 @@ export const Home = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } 
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
     },
   };
 
@@ -49,7 +50,7 @@ export const Home = () => {
           {/* Main Title with Reveal Animation */}
           <h1 className="text-5xl md:text-8xl font-light tracking-tight text-zinc-950 dark:text-white leading-none">
             <span className="block overflow-hidden relative">
-              <motion.span 
+              <motion.span
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -59,7 +60,7 @@ export const Home = () => {
               </motion.span>
             </span>
             <span className="block overflow-hidden relative">
-              <motion.span 
+              <motion.span
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -106,14 +107,11 @@ export const Home = () => {
       </section>
 
       {/* Selected Projects Grid */}
-      <section className="px-5 max-w-7xl mx-auto w-full">
+      <section className="px-5 max-w-7xl mx-auto w-full mt-16 md:mt-24">
         <div className="mb-6 border-b border-zinc-150 dark:border-zinc-900 pb-4 flex items-baseline justify-between">
           <h2 className="text-2xl font-light tracking-tight text-zinc-950 dark:text-white">
             Obras Selectas
           </h2>
-          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-            Grid General
-          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
@@ -128,11 +126,20 @@ export const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Header */}
           <div className="lg:col-span-4 space-y-3">
-            <div className="w-16 h-16 border border-zinc-200 dark:border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 dark:text-zinc-600">
-              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+            <div className="w-24 h-24 border border-zinc-200 dark:border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 dark:text-zinc-600 overflow-hidden bg-zinc-50 dark:bg-zinc-900/10">
+              {!imageError ? (
+                <img
+                  src="/assets/perfil.jpeg"
+                  alt="Sofia Sneider"
+                  className="w-full h-full object-cover"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              )}
             </div>
             <h2 className="text-3xl font-light tracking-tight text-zinc-950 dark:text-white">
               Sobre mí
@@ -172,6 +179,7 @@ export const Home = () => {
                   { name: 'AutoCAD', color: 'E23E3E', logo: 'autodesk' },
                   { name: 'SketchUp', color: '005F9E', logo: 'sketchup' },
                   { name: 'Twinmotion', color: '111111', logo: 'epicgames' },
+                  { name: 'D5 Render', color: '76B900', logo: 'nvidia' },
                 ].map((soft) => (
                   <img
                     key={soft.name}

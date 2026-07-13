@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export const About = () => {
+  const [imageError, setImageError] = useState(false);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -14,10 +15,10 @@ export const About = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     },
   };
 
@@ -31,11 +32,20 @@ export const About = () => {
       {/* Page Header */}
       <header className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 mb-8 border-b border-zinc-150 dark:border-zinc-900 pb-6">
         <div className="flex items-center space-x-6">
-          <div className="w-20 h-20 border border-zinc-200 dark:border-zinc-700 rounded-full flex items-center justify-center text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900/10">
-            <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+          <div className="w-32 h-32 border border-zinc-200 dark:border-zinc-700 rounded-full flex items-center justify-center text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900/10 overflow-hidden">
+            {!imageError ? (
+              <img
+                src="/assets/perfil.jpeg"
+                alt="Sofia Sneider"
+                className="w-full h-full object-cover"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            )}
           </div>
           <div className="space-y-1">
             <h1 className="text-4xl md:text-5xl font-light tracking-tight text-zinc-950 dark:text-white">
@@ -170,11 +180,11 @@ export const About = () => {
               <li className="space-y-0.5">
                 <span className="font-medium text-zinc-950 dark:text-white block">Inglés</span>
                 <span className="text-zinc-600 dark:text-zinc-300 text-xs block">
-                  Avanzado (C1) — Fluidez para equipos multidisciplinares globales.
+                  Intermedio Alto (B2)
                 </span>
               </li>
               <li className="space-y-0.5">
-                <span className="font-medium text-zinc-950 dark:text-white block">Italiano</span>
+                <span className="font-medium text-zinc-950 dark:text-white block">Portugués</span>
                 <span className="text-zinc-600 dark:text-zinc-300 text-xs block">Básico (A2)</span>
               </li>
             </ul>

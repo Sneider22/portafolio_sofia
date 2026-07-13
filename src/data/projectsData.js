@@ -32,7 +32,7 @@ export const projectsData = [
     slug: "mercado-municipal",
     title: "Mercado Municipal",
     category: "Comercial",
-    shortDesc: "Proyecto de Mercado Municipal Crystal Market, complejo comercial articulado en tres volúmenes independientes que zonifican estratégicamente las áreas de comercio húmedo, semi-húmedo y seco.",
+    shortDesc: "Proyecto de Mercado Municipal Crystal Market, complejo comercial articulado en tres volúmenes independientes que zonifican las áreas de comercio húmedo, semi-húmedo y seco.",
     longDesc: "El proyecto del Mercado Municipal Crystal Market se ubica en Caracas, específicamente entre la avenida Rómulo Gallegos y la avenida Sanz. Consta de tres volúmenes distintos: uno de áreas de locales semi-húmedos, otro de áreas húmedas y otro de áreas secas. En el centro del mercado, se encuentra una rampa que conecta los tres volúmenes y que cuenta con un jardín como elemento central. Además, el mercado cuenta con una terraza para disfrutar de espacios al aire libre.",
     heroImage: "/assets/mercado/render1.jpeg",
     renders: [
@@ -62,22 +62,24 @@ export const projectsData = [
   {
     slug: "centro-convenciones",
     title: "Centro de Convenciones",
-    category: "Institucional",
-    shortDesc: "Recinto masivo pensado para congresos internacionales y exposiciones dinámicas.",
-    longDesc: "Diseño arquitectónico de un recinto masivo pensado para congresos, convenciones y ferias. La propuesta busca la polivalencia de los espacios interiores apoyada por grandes crujías estructurales libres de columnas.",
-    heroImage: "/assets/proj3.png",
+    category: "Cultural/Recreativo",
+    shortDesc: "Proyecto Centro de Convenciones y Exposiciones, un punto focal de actividad cultural de fácil acceso. Instalaciones con áreas de reuniones, teatro y espacios recreativos.",
+    longDesc: "El proyecto comprende la construcción de un Centro de Convenciones y Exposiciones, ubicado en una parcela en Caracas, en la urbanización industrial Los Cortijos de Lourdes, lindero Norte Av. Francisco de Miranda, lindero Sur Av. Segunda transversal, límite Oeste Av. Alejandro Hernández, límite Este Quebrada Tocome ,estableciendo así un punto focal de actividad cultural en esta zona. Cuenta con diversas áreas de reuniones, teatro, areas de recreación, entre otros.",
+    heroImage: "/assets/convenciones/render1.png",
     renders: [
-      "/assets/proj3.png",
-      "/assets/proj1.png"
+      "/assets/convenciones/render1.png",
+      "/assets/convenciones/render2.png",
+      "/assets/convenciones/render3.png",
+      "/assets/convenciones/render4.png",
+      "/assets/convenciones/render5.png",
     ],
     blueprints: [
-      "/assets/proj2.png",
-      "/assets/proj3.png"
+      "/assets/convenciones/plano1.jpeg",
+      "/assets/convenciones/plano2.jpeg",
     ],
     blueprintFilter: "grayscale(1) invert(0.8) contrast(1.2)",
     concepts: [
-      "/assets/proj1.png",
-      "/assets/proj2.png"
+      "/assets/convenciones/concepto.jpeg",
     ],
     prevSlug: "mercado-municipal",
     nextSlug: "polideportivo"
@@ -118,18 +120,16 @@ export const projectsData = [
     slug: "renovacion-terraza",
     title: "Renovación de Terraza",
     category: "Comunitario",
-    shortDesc: "Proyecto de Renovación que transforma una azotea residencial en un núcleo de convivencia comunitaria. Áreas para reuniones de condominio, zonas de recreación y un sector equipado con cocina y parrilla para el esparcimiento social.",
+    shortDesc: "Proyecto de Renovación que transforma una azotea residencial en un núcleo de convivencia comunitaria. Áreas para reuniones de condominio, zonas de recreación y cocina.",
     longDesc: "Renovación de Terraza: Edificio Josefitas 2 (Servicio Comunitario). Desarrollado como un proyecto de servicio comunitario en Sabana Grande, esta propuesta de diseño transforma la azotea del Edificio Josefitas 2 en un espacio multifuncional para la convivencia vecinal. La intervención optimiza el área común al integrar de forma fluida zonas de recreación y esparcimiento, un sector de cocina y parrilla, y un espacio dedicado a las asambleas de la junta de condominio, consolidando un punto de encuentro que fortalece el tejido social y la calidad de vida de los copropietarios.",
-    heroImage: "/assets/terraza/renders_terraza.png",
+    heroImage: "/assets/terraza/render1.png",
     renders: [
-      "/assets/terraza/renders_terraza.png",
-      "/assets/terraza/renders_terraza_2.png",
-      "/assets/terraza/renders_terraza_3.png",
-      "/assets/terraza/renders_terraza_4.png",
-      "/assets/terraza/renders_terraza_5.png",
-      "/assets/terraza/renders_terraza_6.png",
-      "/assets/terraza/renders_terraza_8.png",
-      "/assets/terraza/renders_terraza_9.png"
+      "/assets/terraza/render1.png",
+      "/assets/terraza/render2.png",
+      "/assets/terraza/render3.png",
+      "/assets/terraza/render4.png",
+      "/assets/terraza/render5.png",
+      "/assets/terraza/render6.png"
     ],
     blueprints: [
       "/assets/terraza/planta_terraza_1.png",
@@ -137,7 +137,7 @@ export const projectsData = [
       "/assets/terraza/planta_terraza_construcción.png",
       "/assets/terraza/planta_terraza_acabado_piso.png",
       "/assets/terraza/planta_terraza_vigas.png",
-      "/assets/terraza/planta_techo_terraza_.png",
+      "/assets/terraza/planta_techo_terraza_.png"
     ],
     blueprintFilter: "none",
     concepts: [

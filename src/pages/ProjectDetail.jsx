@@ -196,7 +196,7 @@ export const ProjectDetail = () => {
           </h3>
           <DetailCarousel 
             images={project.renders}
-            aspectRatio="aspect-[16/8]"
+            aspectRatio="aspect-[4/3] md:aspect-[16/8]"
             onImageClick={(src) => setActiveLightboxImage(src)} 
           />
           <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-right">

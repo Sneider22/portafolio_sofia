@@ -38,7 +38,7 @@ export const ProjectCard = ({ project, index }) => {
               {project.category}
             </span>
           </div>
-          <p className="text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed max-w-sm line-clamp-2">
+          <p className="text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed max-w-sm line-clamp-2 md:line-clamp-3">
             {project.shortDesc}
           </p>
         </div>

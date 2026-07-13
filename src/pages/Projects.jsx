@@ -18,7 +18,7 @@ export const Projects = () => {
           Obras Selectas
         </h1>
         <p className="text-zinc-400 dark:text-zinc-500 text-xs font-mono tracking-widest uppercase">
-          Proyectos Realizados · 01 / {String(projectsData.length).padStart(2, '0')}
+          Proyectos Académicos · 01 / {String(projectsData.length).padStart(2, '0')}
         </p>
       </header>
 

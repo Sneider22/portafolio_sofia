@@ -80,8 +80,8 @@ export const RotativeGallery = () => {
 
       {/* Slider Viewport */}
       <div
-        className="relative w-full"
-        style={{ transformStyle: 'preserve-3d', minHeight: '420px' }}
+        className="relative w-full min-h-[490px] xs:min-h-[460px] sm:min-h-[430px] md:min-h-[410px] lg:min-h-[460px] xl:min-h-[480px]"
+        style={{ transformStyle: 'preserve-3d' }}
       >
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
@@ -93,7 +93,7 @@ export const RotativeGallery = () => {
             exit="exit"
             transition={pageTransition}
             style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full absolute top-0 left-0"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-center w-full absolute top-0 left-0"
           >
             {/* Left: Image (Cols 1–7) */}
             <Link
@@ -139,7 +139,7 @@ export const RotativeGallery = () => {
               <div className="arch-vertical-line" />
             </div>
 
-            {/* Right: Info (Cols 9–12) */}
+            {/* Info panel */}
             <motion.div
               custom={direction}
               variants={infoVariants}
@@ -175,28 +175,28 @@ export const RotativeGallery = () => {
         </AnimatePresence>
       </div>
 
-      {/* ── Controls Bar ─────────────────────────────────── */}
-      <div className="border-t border-zinc-100 dark:border-zinc-900/60 pt-4 mt-4">
-        <div className="flex flex-col items-center gap-3">
+      {/* ── Controls Bar (responsive) ─────────────────────────────────── */}
+      <div className="border-t border-zinc-150 dark:border-zinc-900/60 pt-6 mt-6">
+        <div className="flex flex-col items-center gap-4">
 
           {/* Prev / Counter / Next — all centered */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             <button
               onClick={() => paginate(-1)}
               disabled={isFlipping}
-              className="hover-target group flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
+              className="hover-target group flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
               aria-label="Anterior"
             >
-              <span className="text-base leading-none group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
-              <span className="hidden sm:inline">Prev</span>
+              <span className="text-lg leading-none group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
+              <span className="hidden xs:inline">Prev</span>
             </button>
 
             {/* Counter */}
-            <div className="flex items-baseline gap-1 text-xs font-mono tracking-widest">
-              <span className="text-zinc-950 dark:text-white font-medium tabular-nums">
+            <div className="flex items-baseline gap-1 text-sm font-mono tracking-widest">
+              <span className="text-zinc-950 dark:text-white font-semibold tabular-nums">
                 {String(activeIndex + 1).padStart(2, '0')}
               </span>
-              <span className="text-zinc-300 dark:text-zinc-700 text-[10px]">/</span>
+              <span className="text-zinc-300 dark:text-zinc-700 text-xs">/</span>
               <span className="text-zinc-500 dark:text-zinc-300 tabular-nums">
                 {String(projectsData.length).padStart(2, '0')}
               </span>
@@ -205,16 +205,16 @@ export const RotativeGallery = () => {
             <button
               onClick={() => paginate(1)}
               disabled={isFlipping}
-              className="hover-target group flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
+              className="hover-target group flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
               aria-label="Siguiente"
             >
-              <span className="hidden sm:inline">Next</span>
-              <span className="text-base leading-none group-hover:translate-x-0.5 transition-transform duration-300">→</span>
+              <span className="hidden xs:inline">Next</span>
+              <span className="text-lg leading-none group-hover:translate-x-0.5 transition-transform duration-300">→</span>
             </button>
           </div>
 
           {/* Dot indicators */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             {projectsData.map((_, i) => (
               <button
                 key={i}
@@ -228,8 +228,8 @@ export const RotativeGallery = () => {
                 }}
                 className={`hover-target rounded-full transition-all duration-400 ${
                   i === activeIndex
-                    ? 'w-4 h-[3px] bg-zinc-950 dark:bg-white'
-                    : 'w-[3px] h-[3px] bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-500 dark:hover:bg-zinc-400'
+                    ? 'w-5 h-[3px] bg-zinc-950 dark:bg-white'
+                    : 'w-[4px] h-[4px] bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-500 dark:hover:bg-zinc-400'
                 }`}
                 aria-label={`Ir a proyecto ${i + 1}`}
               />
