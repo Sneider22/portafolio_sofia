@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pabellón Lumen - Proyectos STUDIO">
+    <title>Pabellón Lumen | STUDIO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar solid-nav">
+        <div class="logo"><a href="index.html">STUDIO.</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="hover-target">Inicio</a></li>
+            <li><a href="proyectos.html" class="hover-target active">Proyectos</a></li>
+            <li><a href="sobre-mi.html" class="hover-target">Sobre mí</a></li>
+            <li><a href="contacto.html" class="hover-target">Contacto</a></li>
+        </ul>
+        <div class="nav-utils">
+            <button class="theme-btn hover-target" aria-label="Toggle Theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            <div class="menu-toggle hover-target">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <div class="menu-header">Navegación</div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </div>
+
+    <main class="page-content project-page">
+        <header class="project-header">
+            <h1 class="proj-name-large reveal-text">Pabellón Lumen</h1>
+            <p class="proj-category reveal-text-delay">Cultural &mdash; 2023</p>
+        </header>
+
+        <section class="project-desc reveal-text-delay">
+            <p>Pabellón Lumen es una estructura temporal diseñada para interactuar con la luz solar a lo largo del día. Mediante un sistema de celosías paramétricas, el espacio interior se transforma constantemente, creando una experiencia inmersiva efímera.</p>
+        </section>
+
+        <section class="project-dual-view">
+            <!-- Planos Col -->
+            <div class="split-col blueprint-col">
+                <h3 class="split-title">Planimetría y Detalles</h3>
+                <div class="split-img-wrapper hover-target">
+                    <img src="assets/proj2.png" alt="Planos Pabellón Lumen" style="filter: grayscale(1) invert(0.8) contrast(1.2);">
+                </div>
+                <p class="split-caption">Despiece Paramétrico y Elevación</p>
+            </div>
+            
+            <!-- Renders Col -->
+            <div class="split-col render-col pt-offset-project">
+                <h3 class="split-title">Renders y Atmósfera</h3>
+                <div class="split-img-wrapper hover-target">
+                    <img src="assets/proj2.png" alt="Renders Pabellón Lumen">
+                </div>
+                <p class="split-caption">Juego de Luces Interior - Atardecer</p>
+            </div>
+        </section>
+        
+        <div class="project-nav">
+            <a href="proyecto-1.html" class="hover-target">&larr; Proyecto Anterior</a>
+            <a href="proyecto-3.html" class="hover-target">Siguiente Proyecto &rarr;</a>
+        </div>
+    </main>
+
+    <footer class="minimal-footer">
+        <p>&copy; 2024 STUDIO. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased transition-colors duration-300;
+  }
+}
+
+/* Custom architectural lines and grids */
+.arch-grid-line {
+  @apply border-t border-zinc-200 dark:border-zinc-800 w-full block;
+}
+
+.arch-vertical-line {
+  @apply border-l border-zinc-200 dark:border-zinc-800 h-full block;
+}
+
+/* Scrollbar styles - technical monospace look */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 dark:hover:bg-zinc-700 transition-colors;
+}
+
+/* Cursor elements */
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  @apply bg-zinc-950 dark:bg-zinc-50 rounded-full fixed pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75;
+}
+
+.custom-cursor-outline {
+  width: 32px;
+  height: 32px;
+  @apply border border-zinc-950/20 dark:border-zinc-50/20 rounded-full fixed pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out;
+}
+
+/* Remove default pointer cursors on desktop if custom cursor is active */
+@media (pointer: fine) {
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active select,
+  .custom-cursor-active input,
+  .custom-cursor-active textarea,
+  .custom-cursor-active .hover-target {
+    cursor: none;
+  }
+}
+
+/* Text reveal animation classes */
+.reveal-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.reveal-text {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes revealUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Subtle image zoom on hover for projects */
+.card-img-wrapper img {
+  @apply transition-transform duration-1000 ease-fluid scale-100;
+}
+
+.card-img-wrapper:hover img {
+  @apply scale-105;
+}
