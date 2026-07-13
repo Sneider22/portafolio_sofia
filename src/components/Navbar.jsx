@@ -15,16 +15,15 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu on navigation
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Inicio',     path: '/' },
-    { name: 'Proyectos',  path: '/proyectos' },
-    { name: 'Sobre mí',   path: '/sobre-mi' },
-    { name: 'Contacto',   path: '/contacto' },
+    { name: 'Inicio',    path: '/' },
+    { name: 'Proyectos', path: '/proyectos' },
+    { name: 'Sobre mí',  path: '/sobre-mi' },
+    { name: 'Contacto',  path: '/contacto' },
   ];
 
   const isLinkActive = (path) => {
@@ -40,18 +39,14 @@ export const Navbar = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-100/80 dark:border-zinc-900/80 shadow-sm shadow-zinc-100/50 dark:shadow-zinc-950/50'
-            : 'bg-white/60 dark:bg-zinc-950/60 backdrop-blur-md border-b border-zinc-100/40 dark:border-zinc-900/40'
+            ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 shadow-sm'
+            : 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-900'
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
 
           {/* Logo */}
-          <Link
-            to="/"
-            className="hover-target group flex items-center gap-2.5 select-none"
-          >
-            {/* Architectural mark */}
+          <Link to="/" className="hover-target group flex items-center gap-2.5 select-none">
             <div className="relative w-5 h-5 flex-shrink-0">
               <span className="absolute inset-0 border border-zinc-900 dark:border-white rotate-45 scale-75 group-hover:rotate-[60deg] transition-transform duration-500" />
               <span className="absolute inset-[3px] bg-zinc-950 dark:bg-white rotate-45 scale-50 group-hover:scale-75 group-hover:rotate-[60deg] transition-all duration-500" />
@@ -70,7 +65,7 @@ export const Navbar = () => {
                   className={`hover-target relative px-4 py-2 text-[11px] tracking-[0.15em] uppercase font-mono transition-colors duration-300 rounded-sm ${
                     isLinkActive(link.path)
                       ? 'text-zinc-950 dark:text-white'
-                      : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+                      : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white'
                   }`}
                 >
                   {link.name}
@@ -86,14 +81,14 @@ export const Navbar = () => {
             ))}
           </ul>
 
-          {/* Right side: Theme + Hamburger */}
+          {/* Right side */}
           <div className="flex items-center gap-3">
 
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="hover-target group relative w-8 h-8 flex items-center justify-center text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300"
+              className="hover-target group relative w-8 h-8 flex items-center justify-center text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {theme === 'dark' ? (
@@ -152,51 +147,53 @@ export const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu — Full overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-40 bg-white dark:bg-zinc-950 flex flex-col justify-center md:hidden overflow-hidden"
           >
-            {/* Decorative vertical lines */}
+            {/* Subtle border lines */}
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute left-5 top-0 bottom-0 border-l border-zinc-100 dark:border-zinc-900" />
               <div className="absolute right-5 top-0 bottom-0 border-r border-zinc-100 dark:border-zinc-900" />
             </div>
 
-            <nav className="px-8 space-y-1">
-              <p className="text-[9px] font-mono tracking-[0.3em] uppercase text-zinc-300 dark:text-zinc-700 mb-8">
+            <nav className="px-8 space-y-0">
+              {/* Label */}
+              <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 mb-8">
                 Navegación
               </p>
+
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.path}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -8 }}
-                  transition={{ duration: 0.35, delay: 0.1 + i * 0.07, ease: [0.33, 1, 0.68, 1] }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.35, delay: 0.08 + i * 0.07, ease: [0.33, 1, 0.68, 1] }}
                 >
                   <Link
                     to={link.path}
-                    className={`hover-target group flex items-baseline gap-4 py-3 border-b border-zinc-100 dark:border-zinc-900 transition-colors duration-200 ${
+                    className={`hover-target group flex items-baseline gap-5 py-4 border-b border-zinc-100 dark:border-zinc-900 transition-colors duration-200 ${
                       isLinkActive(link.path)
                         ? 'text-zinc-950 dark:text-white'
-                        : 'text-zinc-300 dark:text-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300'
+                        : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
                     }`}
                   >
-                    <span className="text-[9px] font-mono text-zinc-300 dark:text-zinc-700 w-4">
+                    <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 w-5 shrink-0 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span className="text-2xl font-light tracking-tight">
+                    <span className="text-3xl font-light tracking-tight leading-none">
                       {link.name}
                     </span>
                     {isLinkActive(link.path) && (
-                      <span className="ml-auto text-[9px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500">
-                        Activo
+                      <span className="ml-auto text-[10px] font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-400 shrink-0">
+                        ●
                       </span>
                     )}
                   </Link>
@@ -204,21 +201,21 @@ export const Navbar = () => {
               ))}
             </nav>
 
-            {/* Bottom info */}
+            {/* Bottom bar */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.45, duration: 0.4 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
               className="absolute bottom-8 left-8 right-8 flex items-center justify-between"
             >
-              <span className="text-[9px] font-mono tracking-widest uppercase text-zinc-300 dark:text-zinc-700">
+              <span className="text-[10px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500">
                 Portfolio © 2026
               </span>
               <button
                 onClick={toggleTheme}
-                className="hover-target text-[9px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                className="hover-target text-[10px] font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors"
               >
-                {theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro'}
+                {theme === 'dark' ? '☀ Claro' : '☽ Oscuro'}
               </button>
             </motion.div>
           </motion.div>

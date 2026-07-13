@@ -98,7 +98,6 @@ export const RotativeGallery = () => {
             {/* Left: Image (Cols 1–7) */}
             <Link
               to={`/proyecto/${project.slug}`}
-              data-cursor="ver"
               style={{ transformStyle: 'preserve-3d' }}
               className="lg:col-span-7 w-full overflow-hidden relative border border-zinc-150 dark:border-zinc-900 aspect-[16/10] bg-zinc-50 dark:bg-zinc-900/10 group block hover-target"
             >
@@ -127,10 +126,10 @@ export const RotativeGallery = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/15 transition-colors duration-500 flex items-center justify-center">
-                <span className="text-white text-[10px] font-mono uppercase tracking-widest border border-white/20 bg-black/20 px-5 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                  Ver Obra
+              {/* Hover overlay with Ver Detalles text */}
+              <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/30 transition-colors duration-500 flex items-center justify-center">
+                <span className="text-white text-[10px] font-mono uppercase tracking-widest border border-white/30 bg-black/20 backdrop-blur-sm px-6 py-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                  Ver Detalles
                 </span>
               </div>
             </Link>
@@ -149,8 +148,8 @@ export const RotativeGallery = () => {
               exit="exit"
               className="lg:col-span-4 flex flex-col justify-center space-y-4 py-2"
             >
-              <div className="text-zinc-400 dark:text-zinc-500 text-[10px] font-mono tracking-widest uppercase flex items-center space-x-2">
-                <span className="inline-block w-1 h-1 bg-zinc-400 dark:bg-zinc-600 rounded-full" />
+              <div className="text-zinc-500 dark:text-zinc-300 text-xs font-mono tracking-widest uppercase flex items-center space-x-2">
+                <span className="inline-block w-1 h-1 bg-zinc-400 dark:bg-zinc-500 rounded-full" />
                 <span>{project.category}</span>
               </div>
 
@@ -158,14 +157,14 @@ export const RotativeGallery = () => {
                 {project.title}
               </h2>
 
-              <p className="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed max-w-sm">
+              <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-sm">
                 {project.shortDesc}
               </p>
 
               <div className="pt-2">
                 <Link
                   to={`/proyecto/${project.slug}`}
-                  className="hover-target inline-flex items-center space-x-2 text-[10px] font-mono uppercase tracking-widest text-zinc-900 dark:text-white border-b border-zinc-300 dark:border-zinc-700 pb-0.5 hover:border-zinc-950 dark:hover:border-white transition-colors duration-300"
+                  className="hover-target inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-zinc-900 dark:text-white border-b border-zinc-300 dark:border-zinc-700 pb-0.5 hover:border-zinc-950 dark:hover:border-white transition-colors duration-300"
                 >
                   <span>Ver Obra</span>
                   <span className="text-[9px]">→</span>
@@ -185,7 +184,7 @@ export const RotativeGallery = () => {
             <button
               onClick={() => paginate(-1)}
               disabled={isFlipping}
-              className="hover-target group flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
+              className="hover-target group flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
               aria-label="Anterior"
             >
               <span className="text-base leading-none group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
@@ -198,7 +197,7 @@ export const RotativeGallery = () => {
                 {String(activeIndex + 1).padStart(2, '0')}
               </span>
               <span className="text-zinc-300 dark:text-zinc-700 text-[10px]">/</span>
-              <span className="text-zinc-400 dark:text-zinc-500 tabular-nums">
+              <span className="text-zinc-500 dark:text-zinc-300 tabular-nums">
                 {String(projectsData.length).padStart(2, '0')}
               </span>
             </div>
@@ -206,7 +205,7 @@ export const RotativeGallery = () => {
             <button
               onClick={() => paginate(1)}
               disabled={isFlipping}
-              className="hover-target group flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
+              className="hover-target group flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 disabled:opacity-40"
               aria-label="Siguiente"
             >
               <span className="hidden sm:inline">Next</span>

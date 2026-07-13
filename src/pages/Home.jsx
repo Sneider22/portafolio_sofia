@@ -63,7 +63,7 @@ export const Home = () => {
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-block italic font-serif text-zinc-400 dark:text-zinc-600"
+                className="inline-block italic font-serif text-zinc-500 dark:text-zinc-400"
               >
                 Sensorial
               </motion.span>
@@ -73,7 +73,7 @@ export const Home = () => {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-zinc-500 dark:text-zinc-400 text-lg md:text-xl font-light max-w-xl leading-relaxed"
+            className="text-zinc-700 dark:text-zinc-200 text-lg md:text-xl font-light max-w-xl leading-relaxed"
           >
             Diseñando espacios atemporales que dialogan con la luz, la materia y el entorno.
           </motion.p>
@@ -83,7 +83,7 @@ export const Home = () => {
         <motion.div
           variants={itemVariants}
           onClick={handleScrollDown}
-          className="absolute bottom-10 left-6 flex items-center space-x-4 hover-target group cursor-pointer text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+          className="absolute bottom-10 left-6 flex items-center space-x-4 hover-target group cursor-pointer text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors"
         >
           <span className="text-xs uppercase tracking-widest font-mono">Descubrir</span>
           <div className="w-12 h-[1px] bg-zinc-200 dark:bg-zinc-800 group-hover:w-20 transition-all duration-300 relative">
@@ -95,10 +95,10 @@ export const Home = () => {
       {/* Cinematic Rotative Gallery Section */}
       <section id="gallery-section" className="px-5 max-w-7xl mx-auto w-full scroll-mt-20">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-4">
-          <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+          <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-300">
             Galería Cinemática
           </h2>
-          <span className="text-xs font-mono text-zinc-300 dark:text-zinc-800 hidden md:block">
+          <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 hidden md:block">
             Mover con controles / Autoplay
           </span>
         </div>
@@ -111,7 +111,7 @@ export const Home = () => {
           <h2 className="text-2xl font-light tracking-tight text-zinc-950 dark:text-white">
             Obras Selectas
           </h2>
-          <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
             Grid General
           </span>
         </div>
@@ -137,7 +137,7 @@ export const Home = () => {
             <h2 className="text-3xl font-light tracking-tight text-zinc-950 dark:text-white">
               Sobre mí
             </h2>
-            <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-xs">
               Arquitecta apasionada por la creación de espacios atemporales y la atención minuciosa al detalle.
             </p>
           </div>
@@ -145,17 +145,17 @@ export const Home = () => {
           {/* Details */}
           <div className="lg:col-span-8 space-y-6">
             <div className="border-b border-zinc-100 dark:border-zinc-900/60 pb-4">
-              <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3">
+              <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-3">
                 Experiencia Reciente
               </h3>
               <div className="space-y-2">
                 <h4 className="text-md font-normal text-zinc-950 dark:text-white">
                   Arquitecta Proyectista
                 </h4>
-                <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+                <p className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                   Estudio de Arquitectura / 2021 — Presente
                 </p>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-xl leading-relaxed mt-2">
+                <p className="text-zinc-700 dark:text-zinc-200 text-sm max-w-xl leading-relaxed mt-2">
                   Desarrollo conceptual, modelado 3D BIM, y planimetría para proyectos residenciales y comerciales de alto perfil.
                 </p>
               </div>
@@ -163,7 +163,7 @@ export const Home = () => {
 
             {/* Software badges */}
             <div className="">
-              <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3">
+              <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-3">
                 Software & Herramientas
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -189,11 +189,11 @@ export const Home = () => {
       {/* Contact Section */}
       <section id="contacto-inicio" className="px-5 max-w-7xl mx-auto w-full border-t border-zinc-150 dark:border-zinc-900 pt-10 pb-10">
         <div className="text-center space-y-5 py-6">
-          <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+          <h2 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
             Contacto
           </h2>
           <div className="space-y-2">
-            <p className="text-xl font-light text-zinc-400 dark:text-zinc-600">
+            <p className="text-xl font-light text-zinc-600 dark:text-zinc-300">
               Iniciemos un diálogo
             </p>
             <a
@@ -204,7 +204,7 @@ export const Home = () => {
             </a>
           </div>
 
-          <div className="flex justify-center space-x-8 pt-4 text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500">
+          <div className="flex justify-center space-x-8 pt-4 text-xs font-mono tracking-widest text-zinc-500 dark:text-zinc-300">
             {['Instagram', 'LinkedIn', 'Behance'].map((social) => (
               <a
                 key={social}

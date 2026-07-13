@@ -31,7 +31,7 @@ export const About = () => {
       {/* Page Header */}
       <header className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 mb-8 border-b border-zinc-150 dark:border-zinc-900 pb-6">
         <div className="flex items-center space-x-6">
-          <div className="w-20 h-20 border border-zinc-200 dark:border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 dark:text-zinc-600 bg-zinc-50 dark:bg-zinc-900/10">
+          <div className="w-20 h-20 border border-zinc-200 dark:border-zinc-700 rounded-full flex items-center justify-center text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900/10">
             <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
@@ -41,12 +41,12 @@ export const About = () => {
             <h1 className="text-4xl md:text-5xl font-light tracking-tight text-zinc-950 dark:text-white">
               Sobre mí
             </h1>
-            <p className="text-zinc-400 dark:text-zinc-500 text-xs font-mono tracking-widest uppercase">
+            <p className="text-zinc-600 dark:text-zinc-300 text-xs font-mono tracking-widest uppercase">
               Curriculum Vitae
             </p>
           </div>
         </div>
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-md leading-relaxed md:text-right">
+        <p className="text-zinc-700 dark:text-zinc-200 text-sm max-w-md leading-relaxed md:text-right">
           Arquitecta apasionada por la creación de espacios atemporales y la atención minuciosa al detalle.
         </p>
       </header>
@@ -58,7 +58,7 @@ export const About = () => {
           {/* Experience */}
           <motion.div variants={itemVariants} className="space-y-4">
             <div className="border-b border-zinc-100 dark:border-zinc-900 pb-4">
-              <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+              <h2 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                 Experiencia Profesional
               </h2>
             </div>
@@ -70,11 +70,11 @@ export const About = () => {
                   <h3 className="text-md font-normal text-zinc-950 dark:text-white">
                     Arquitecta Proyectista
                   </h3>
-                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                     Estudio de Arquitectura / 2021 — Presente
                   </span>
                 </div>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed max-w-2xl">
+                <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-2xl">
                   Desarrollo conceptual, modelado 3D BIM, y planimetría para proyectos residenciales y comerciales de alto perfil.
                 </p>
               </div>
@@ -85,11 +85,11 @@ export const About = () => {
                   <h3 className="text-md font-normal text-zinc-950 dark:text-white">
                     Arquitecta Junior
                   </h3>
-                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                     Firma Creativa SRL / 2019 — 2021
                   </span>
                 </div>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed max-w-2xl">
+                <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-2xl">
                   Asistencia en la elaboración de proyectos ejecutivos y renderizado fotorrealista. Coordinación con proveedores.
                 </p>
               </div>
@@ -99,7 +99,7 @@ export const About = () => {
           {/* Education */}
           <motion.div variants={itemVariants} className="space-y-4">
             <div className="border-b border-zinc-100 dark:border-zinc-900 pb-4">
-              <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+              <h2 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                 Educación Académica
               </h2>
             </div>
@@ -111,7 +111,7 @@ export const About = () => {
                   <h3 className="text-md font-normal text-zinc-950 dark:text-white">
                     Máster en Diseño Arquitectónico
                   </h3>
-                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                     Univ. de Arquitectura Europea / 2022 — 2023
                   </span>
                 </div>
@@ -123,7 +123,7 @@ export const About = () => {
                   <h3 className="text-md font-normal text-zinc-950 dark:text-white">
                     Licenciatura en Arquitectura
                   </h3>
-                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
                     Universidad Nacional / 2014 — 2019
                   </span>
                 </div>
@@ -136,7 +136,7 @@ export const About = () => {
         <div className="lg:col-span-4 space-y-8 lg:border-l lg:border-zinc-100 lg:dark:border-zinc-900 lg:pl-8">
           {/* Software */}
           <motion.div variants={itemVariants} className="space-y-3">
-            <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-4">
+            <h2 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-4">
               Software & Herramientas
             </h2>
             <div className="flex flex-wrap gap-2.5">
@@ -159,23 +159,23 @@ export const About = () => {
 
           {/* Languages */}
           <motion.div variants={itemVariants} className="space-y-3">
-            <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-4">
+            <h2 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-4">
               Idiomas
             </h2>
             <ul className="space-y-2 text-sm">
               <li className="space-y-0.5">
                 <span className="font-medium text-zinc-950 dark:text-white block">Español</span>
-                <span className="text-zinc-500 dark:text-zinc-400 text-xs block">Nativo</span>
+                <span className="text-zinc-600 dark:text-zinc-300 text-xs block">Nativo</span>
               </li>
               <li className="space-y-0.5">
                 <span className="font-medium text-zinc-950 dark:text-white block">Inglés</span>
-                <span className="text-zinc-500 dark:text-zinc-400 text-xs block">
+                <span className="text-zinc-600 dark:text-zinc-300 text-xs block">
                   Avanzado (C1) — Fluidez para equipos multidisciplinares globales.
                 </span>
               </li>
               <li className="space-y-0.5">
                 <span className="font-medium text-zinc-950 dark:text-white block">Italiano</span>
-                <span className="text-zinc-500 dark:text-zinc-400 text-xs block">Básico (A2)</span>
+                <span className="text-zinc-600 dark:text-zinc-300 text-xs block">Básico (A2)</span>
               </li>
             </ul>
           </motion.div>

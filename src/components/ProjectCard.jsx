@@ -11,7 +11,7 @@ export const ProjectCard = ({ project, index }) => {
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="group"
     >
-      <Link to={`/proyecto/${project.slug}`} data-cursor="ver" className="block hover-target">
+      <Link to={`/proyecto/${project.slug}`} className="block hover-target">
         {/* Image Frame */}
         <div className="card-img-wrapper overflow-hidden relative aspect-[4/3] border border-zinc-100 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-900/10">
           <img
@@ -34,11 +34,11 @@ export const ProjectCard = ({ project, index }) => {
             <h3 className="text-md font-light text-zinc-950 dark:text-white group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors">
               {project.title}
             </h3>
-            <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+            <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
               {project.category}
             </span>
           </div>
-          <p className="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed max-w-sm line-clamp-2">
+          <p className="text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed max-w-sm line-clamp-2">
             {project.shortDesc}
           </p>
         </div>

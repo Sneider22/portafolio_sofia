@@ -5,6 +5,12 @@
 @layer base {
   body {
     @apply antialiased transition-colors duration-300;
+    /* Light mode: true dark text */
+    color: theme('colors.zinc.900');
+  }
+  .dark body {
+    /* Dark mode: true white text */
+    color: theme('colors.zinc.50');
   }
 }
 
