@@ -1,7 +1,7 @@
 export const projectsData = [
   {
     slug: "terminal-de-autobuses-la-hoyada",
-    title: "TERMINAL DE AUTOBUSES",
+    title: "Terminal de Autobuses",
     category: "Institucional",
     shortDesc: "Complejo hotelero enfocado en confort del huésped y su integración con el paisaje.",
     longDesc: "El proyecto del Terminal de Autobuses Interurbano, ubicado en La Hoyada (Caracas), está delimitado por las avenidas Bolívar, Lecuna, Sur 9 y Sur 5. Su diseño utiliza la avenida Fuerzas Armadas como eje organizador, dividiendo el complejo en dos grandes sectores: el Terminal Oeste, destinado a las rutas de Occidente, y el Terminal Este, para las de Oriente. Ambas zonas están unidas por un puente conector que también funciona como galería de arte. Concebido como un nodo intermodal, el conjunto integra en su periferia paradas de transporte urbano, una zona de taxis y áreas independientes destinadas al mantenimiento y a los servicios para empleados. En cuanto a su distribución, la planta baja concentra el flujo operativo a través de un gran lobby, áreas de taquillas y check-in, además de una zona privada de llegadas y salidas con acceso directo a los andenes. Por su parte, el primer piso se reserva para el ámbito administrativo y de esparcimiento, albergando la feria de comida, un área infantil, las oficinas de gestión y el recorrido cultural de la galería.",
@@ -91,7 +91,7 @@ export const projectsData = [
     title: "Polideportivo",
     category: "Deportivo",
     shortDesc: "Fomento a la actividad física con canchas polivalentes bajo cubierta estructural expuesta.",
-    longDesc: "Fomento a la actividad física a través del diseño de un polideportivo con canchas polivalentes bajo una gran cubierta metálica de estructura expuesta. El proyecto cuenta con graderías y áreas de servicio perimetrales.",
+    longDesc: "El Palacio Deportivo es un centro multifuncional que integra áreas deportivas, recreativas y comerciales en tres niveles, optimizando su operatividad mediante accesos diferenciados según su uso. La planta baja centraliza las actividades acuáticas, la cancha múltiple, comercios y la administración; el segundo nivel se enfoca en pádel y tenis; mientras que el tercer nivel se destina a gimnasia, disciplinas de combate y una terraza de usos múltiples. Este diseño arquitectónico logra una distribución eficiente de los espacios especializados, garantizando una experiencia deportiva completa y una gestión de flujos vehiculares y peatonales de gran fluidez.",
     heroImage: "/assets/proj1.png",
     renders: [
       "/assets/proj1.png",

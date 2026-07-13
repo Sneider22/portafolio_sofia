@@ -9,6 +9,7 @@ import { Projects } from './pages/Projects';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { ProjectDetail } from './pages/ProjectDetail';
+import { ScrollToTop } from './components/ScrollToTop';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
       <Router>
         <div className="relative min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 font-sans bg-grid-pattern transition-colors duration-300 flex flex-col justify-between">
           <div>
+            {/* Scroll to top on every route change */}
+            <ScrollToTop />
+
             {/* Double Cursor */}
             <CustomCursor />
 

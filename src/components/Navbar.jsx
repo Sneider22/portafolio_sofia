@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -6,138 +6,221 @@ import { AnimatePresence, motion } from 'framer-motion';
 export const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close menu on navigation
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
-    { name: 'Inicio', path: '/' },
-    { name: 'Proyectos', path: '/proyectos' },
-    { name: 'Sobre mí', path: '/sobre-mi' },
-    { name: 'Contacto', path: '/contacto' }
+    { name: 'Inicio',     path: '/' },
+    { name: 'Proyectos',  path: '/proyectos' },
+    { name: 'Sobre mí',   path: '/sobre-mi' },
+    { name: 'Contacto',   path: '/contacto' },
   ];
 
   const isLinkActive = (path) => {
-    if (path === '/') {
-      return location.pathname === '/';
-    }
+    if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
   };
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-900 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <motion.nav
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-100/80 dark:border-zinc-900/80 shadow-sm shadow-zinc-100/50 dark:shadow-zinc-950/50'
+            : 'bg-white/60 dark:bg-zinc-950/60 backdrop-blur-md border-b border-zinc-100/40 dark:border-zinc-900/40'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+
           {/* Logo */}
-          <Link to="/" className="text-xl font-bold tracking-widest hover-target font-mono">
-            STUDIO.
+          <Link
+            to="/"
+            className="hover-target group flex items-center gap-2.5 select-none"
+          >
+            {/* Architectural mark */}
+            <div className="relative w-5 h-5 flex-shrink-0">
+              <span className="absolute inset-0 border border-zinc-900 dark:border-white rotate-45 scale-75 group-hover:rotate-[60deg] transition-transform duration-500" />
+              <span className="absolute inset-[3px] bg-zinc-950 dark:bg-white rotate-45 scale-50 group-hover:scale-75 group-hover:rotate-[60deg] transition-all duration-500" />
+            </div>
+            <span className="text-sm font-semibold tracking-[0.2em] font-mono text-zinc-950 dark:text-white uppercase">
+              Studio
+            </span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <ul className="hidden md:flex space-x-12 items-center">
+          {/* Desktop Nav */}
+          <ul className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <li key={link.path} className="relative">
+              <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`text-sm tracking-widest uppercase hover-target hover:text-zinc-950 dark:hover:text-white transition-colors py-2 font-mono ${
-                    isLinkActive(link.path) 
-                      ? 'text-zinc-950 dark:text-white font-medium' 
-                      : 'text-zinc-400 dark:text-zinc-500'
+                  className={`hover-target relative px-4 py-2 text-[11px] tracking-[0.15em] uppercase font-mono transition-colors duration-300 rounded-sm ${
+                    isLinkActive(link.path)
+                      ? 'text-zinc-950 dark:text-white'
+                      : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
                   }`}
                 >
                   {link.name}
+                  {isLinkActive(link.path) && (
+                    <motion.span
+                      layoutId="activeNavLine"
+                      className="absolute bottom-0 left-4 right-4 h-[1px] bg-zinc-950 dark:bg-white"
+                      transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                    />
+                  )}
                 </Link>
-                {isLinkActive(link.path) && (
-                  <motion.div 
-                    layoutId="activeNavLine"
-                    className="absolute bottom-0 left-0 w-full h-[1px] bg-zinc-950 dark:bg-white"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
               </li>
             ))}
           </ul>
 
-          {/* Theme Toggle & Mobile Menu Toggle */}
-          <div className="flex items-center space-x-6">
+          {/* Right side: Theme + Hamburger */}
+          <div className="flex items-center gap-3">
+
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 flex items-center justify-center border border-zinc-100 dark:border-zinc-900 rounded-full hover-target hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors text-zinc-600 dark:text-zinc-400"
-              aria-label="Toggle Theme"
+              aria-label="Toggle theme"
+              className="hover-target group relative w-8 h-8 flex items-center justify-center text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300"
             >
-              {theme === 'dark' ? (
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="5"></circle>
-                  <line x1="12" y1="1" x2="12" y2="3"></line>
-                  <line x1="12" y1="21" x2="12" y2="23"></line>
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                  <line x1="1" y1="12" x2="3" y2="12"></line>
-                  <line x1="21" y1="12" x2="23" y2="12"></line>
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-              ) : (
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                {theme === 'dark' ? (
+                  <motion.svg
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"
+                  >
+                    <circle cx="12" cy="12" r="4" />
+                    <line x1="12" y1="2" x2="12" y2="5" />
+                    <line x1="12" y1="19" x2="12" y2="22" />
+                    <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+                    <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+                    <line x1="2" y1="12" x2="5" y2="12" />
+                    <line x1="19" y1="12" x2="22" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+                    <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+                  </motion.svg>
+                ) : (
+                  <motion.svg
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"
+                  >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </motion.svg>
+                )}
+              </AnimatePresence>
             </button>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden flex flex-col items-end space-y-1.5 p-2 hover-target group z-50"
-              aria-label="Toggle Menu"
+              className="md:hidden hover-target flex flex-col justify-center items-end gap-[5px] w-8 h-8 group"
+              aria-label="Toggle menu"
             >
-              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-300 ${
-                mobileMenuOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'
+              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-400 ${
+                mobileMenuOpen ? 'w-5 rotate-45 translate-y-[6px]' : 'w-5'
               }`} />
               <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-300 ${
-                mobileMenuOpen ? 'w-0 opacity-0' : 'w-4 group-hover:w-6'
+                mobileMenuOpen ? 'w-0 opacity-0' : 'w-3 group-hover:w-5'
               }`} />
-              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-300 ${
-                mobileMenuOpen ? 'w-6 -rotate-45 -translate-y-1.5' : 'w-5 group-hover:w-6'
+              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-400 ${
+                mobileMenuOpen ? 'w-5 -rotate-45 -translate-y-[6px]' : 'w-4 group-hover:w-5'
               }`} />
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Menu — Full overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white dark:bg-zinc-950 flex flex-col justify-center px-8 md:hidden"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-40 bg-white dark:bg-zinc-950 flex flex-col justify-center md:hidden overflow-hidden"
           >
-            <div className="text-zinc-300 dark:text-zinc-800 text-xs tracking-widest uppercase mb-10 font-mono">
-              Navegación
+            {/* Decorative vertical lines */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute left-5 top-0 bottom-0 border-l border-zinc-100 dark:border-zinc-900" />
+              <div className="absolute right-5 top-0 bottom-0 border-r border-zinc-100 dark:border-zinc-900" />
             </div>
-            <ul className="space-y-8 flex flex-col">
-              {navLinks.map((link) => (
-                <motion.li
+
+            <nav className="px-8 space-y-1">
+              <p className="text-[9px] font-mono tracking-[0.3em] uppercase text-zinc-300 dark:text-zinc-700 mb-8">
+                Navegación
+              </p>
+              {navLinks.map((link, i) => (
+                <motion.div
                   key={link.path}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -20, opacity: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -8 }}
+                  transition={{ duration: 0.35, delay: 0.1 + i * 0.07, ease: [0.33, 1, 0.68, 1] }}
                 >
                   <Link
                     to={link.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`text-3xl font-light tracking-wide hover:opacity-100 transition-opacity font-mono ${
-                      isLinkActive(link.path) 
-                        ? 'text-zinc-950 dark:text-white' 
-                        : 'text-zinc-400 dark:text-zinc-600'
+                    className={`hover-target group flex items-baseline gap-4 py-3 border-b border-zinc-100 dark:border-zinc-900 transition-colors duration-200 ${
+                      isLinkActive(link.path)
+                        ? 'text-zinc-950 dark:text-white'
+                        : 'text-zinc-300 dark:text-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300'
                     }`}
                   >
-                    {link.name}
+                    <span className="text-[9px] font-mono text-zinc-300 dark:text-zinc-700 w-4">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-2xl font-light tracking-tight">
+                      {link.name}
+                    </span>
+                    {isLinkActive(link.path) && (
+                      <span className="ml-auto text-[9px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500">
+                        Activo
+                      </span>
+                    )}
                   </Link>
-                </motion.li>
+                </motion.div>
               ))}
-            </ul>
+            </nav>
+
+            {/* Bottom info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45, duration: 0.4 }}
+              className="absolute bottom-8 left-8 right-8 flex items-center justify-between"
+            >
+              <span className="text-[9px] font-mono tracking-widest uppercase text-zinc-300 dark:text-zinc-700">
+                Portfolio © 2026
+              </span>
+              <button
+                onClick={toggleTheme}
+                className="hover-target text-[9px] font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+              >
+                {theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro'}
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

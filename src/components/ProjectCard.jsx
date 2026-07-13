@@ -17,7 +17,7 @@ export const ProjectCard = ({ project, index }) => {
           <img
             src={project.heroImage}
             alt={project.title}
-            className="w-full h-full object-cover filter contrast-[1.02]"
+            className="w-full h-full object-cover"
             loading="lazy"
           />
           {/* Custom Overlay */}

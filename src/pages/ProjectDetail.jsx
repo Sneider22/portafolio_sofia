@@ -71,7 +71,7 @@ const DetailCarousel = ({ images, filterStyle = {}, onImageClick }) => {
               src={images[index]}
               alt={`Slide ${index + 1}`}
               style={filterStyle}
-              className="w-full h-full object-cover filter contrast-[1.02] hover:scale-[1.02] transition-transform duration-700 ease-fluid"
+              className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
             />
           </motion.div>
         </AnimatePresence>
@@ -141,15 +141,15 @@ export const ProjectDetail = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="pt-24 pb-20 w-full min-h-screen"
+      className="pt-20 pb-12 w-full min-h-screen"
     >
       {/* Project Header */}
-      <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col justify-center items-start min-h-[50vh]">
+      <section className="max-w-7xl mx-auto px-5 py-8 md:py-14 flex flex-col justify-center items-start min-h-[35vh]">
         <div className="space-y-4 max-w-4xl">
           <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest block">
             {project.category} &mdash; Proyecto
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-light tracking-tight text-zinc-950 dark:text-white leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-light tracking-tight text-zinc-950 dark:text-white leading-tight">
             {project.title}
           </h1>
         </div>
@@ -157,7 +157,7 @@ export const ProjectDetail = () => {
         {/* Scroll Indicator */}
         <div 
           onClick={handleScrollToContent}
-          className="hover-target mt-12 flex items-center space-x-4 cursor-pointer text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+          className="hover-target mt-6 flex items-center space-x-4 cursor-pointer text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
         >
           <span className="text-xs uppercase tracking-widest font-mono">Ver Obras</span>
           <div className="w-12 h-[1px] bg-zinc-200 dark:bg-zinc-800 transition-all duration-300 relative">
@@ -167,13 +167,14 @@ export const ProjectDetail = () => {
       </section>
 
       {/* Main Content Area */}
-      <div id="project-gallery" className="max-w-7xl mx-auto px-6 space-y-16 md:space-y-24 scroll-mt-24">
+      <div id="project-gallery" className="max-w-7xl mx-auto px-5 space-y-10 md:space-y-16 scroll-mt-20">
         {/* Description Section */}
-        <section className="max-w-3xl border-t border-zinc-100 dark:border-zinc-900 pt-10">
-          <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-6">
+        <section className="border-t border-zinc-100 dark:border-zinc-900 pt-6">
+          <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-4">
             Descripción
           </h3>
-          <p className="text-zinc-500 dark:text-zinc-400 text-lg font-light leading-relaxed">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-[1.85] font-light
+                        md:columns-2 md:gap-10 lg:gap-14">
             {project.longDesc}
           </p>
         </section>
@@ -193,7 +194,7 @@ export const ProjectDetail = () => {
         </section>
 
         {/* Technical / Conceptual Dual View */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Blueprints / Planos */}
           <div className="space-y-4">
             <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
@@ -201,7 +202,7 @@ export const ProjectDetail = () => {
             </h3>
             <DetailCarousel 
               images={project.blueprints} 
-              filterStyle={project.blueprintFilter !== 'none' ? { filter: project.blueprintFilter } : {}}
+              filterStyle={{}}
               onImageClick={(src) => setActiveLightboxImage(src)}
             />
             <p className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-left">
@@ -216,7 +217,7 @@ export const ProjectDetail = () => {
             </h3>
             <DetailCarousel 
               images={project.concepts} 
-              filterStyle={project.conceptFilter !== 'none' ? { filter: project.conceptFilter } : {}}
+              filterStyle={{}}
               onImageClick={(src) => setActiveLightboxImage(src)}
             />
             <p className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-right">
@@ -227,15 +228,15 @@ export const ProjectDetail = () => {
 
         {/* Video Recorrido Section (If available) */}
         {project.video && (
-          <section className="space-y-4 border-t border-zinc-100 dark:border-zinc-900 pt-16">
-            <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-6">
+          <section className="space-y-3 border-t border-zinc-100 dark:border-zinc-900 pt-8">
+            <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3">
               Video Recorrido
             </h3>
             <div className="aspect-video w-full border border-zinc-150 dark:border-zinc-900 overflow-hidden bg-black relative">
               <video 
                 controls 
                 poster={project.video.poster}
-                className="w-full h-full object-cover filter contrast-[1.02]"
+                className="w-full h-full object-cover"
               >
                 <source src={project.video.url} type="video/mp4" />
                 Tu navegador no soporta el formato de video mp4.
@@ -248,7 +249,7 @@ export const ProjectDetail = () => {
         )}
 
         {/* Navigation between projects */}
-        <div className="flex items-center justify-between border-t border-zinc-150 dark:border-zinc-900 pt-12 text-xs font-mono tracking-widest uppercase">
+        <div className="flex items-center justify-between border-t border-zinc-150 dark:border-zinc-900 pt-6 text-xs font-mono tracking-widest uppercase">
           <Link
             to={`/proyecto/${prevProject.slug}`}
             className="hover-target hover:text-zinc-500 dark:hover:text-zinc-400 transition-colors py-2"

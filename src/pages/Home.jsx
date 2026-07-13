@@ -37,17 +37,17 @@ export const Home = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-16 md:space-y-32"
+      className="space-y-10 md:space-y-20"
     >
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center items-start pt-20 px-6 max-w-7xl mx-auto w-full">
+      <section className="relative min-h-[70vh] flex flex-col justify-center items-start pt-16 px-5 max-w-7xl mx-auto w-full">
         {/* Decorative Grid Lines */}
         <div className="absolute top-0 left-6 h-full border-l border-zinc-100 dark:border-zinc-900 -z-10 pointer-events-none" />
         <div className="absolute top-0 right-6 h-full border-r border-zinc-100 dark:border-zinc-900 -z-10 pointer-events-none" />
 
-        <div className="space-y-8 max-w-4xl">
+        <div className="space-y-4 max-w-4xl">
           {/* Main Title with Reveal Animation */}
-          <h1 className="text-6xl md:text-8xl font-light tracking-tight text-zinc-950 dark:text-white leading-none">
+          <h1 className="text-5xl md:text-8xl font-light tracking-tight text-zinc-950 dark:text-white leading-none">
             <span className="block overflow-hidden relative">
               <motion.span 
                 initial={{ y: '100%' }}
@@ -93,8 +93,8 @@ export const Home = () => {
       </section>
 
       {/* Cinematic Rotative Gallery Section */}
-      <section id="gallery-section" className="px-6 max-w-7xl mx-auto w-full scroll-mt-24">
-        <div className="flex flex-col md:flex-row items-baseline justify-between mb-8">
+      <section id="gallery-section" className="px-5 max-w-7xl mx-auto w-full scroll-mt-20">
+        <div className="flex flex-col md:flex-row items-baseline justify-between mb-4">
           <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
             Galería Cinemática
           </h2>
@@ -106,8 +106,8 @@ export const Home = () => {
       </section>
 
       {/* Selected Projects Grid */}
-      <section className="px-6 max-w-7xl mx-auto w-full">
-        <div className="mb-12 border-b border-zinc-150 dark:border-zinc-900 pb-6 flex items-baseline justify-between">
+      <section className="px-5 max-w-7xl mx-auto w-full">
+        <div className="mb-6 border-b border-zinc-150 dark:border-zinc-900 pb-4 flex items-baseline justify-between">
           <h2 className="text-2xl font-light tracking-tight text-zinc-950 dark:text-white">
             Obras Selectas
           </h2>
@@ -116,7 +116,7 @@ export const Home = () => {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
           {projectsData.map((project, idx) => (
             <ProjectCard key={project.slug} project={project} index={idx} />
           ))}
@@ -124,10 +124,10 @@ export const Home = () => {
       </section>
 
       {/* About Me Section */}
-      <section id="sobre-mi-inicio" className="px-6 max-w-7xl mx-auto w-full border-t border-zinc-150 dark:border-zinc-900 pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section id="sobre-mi-inicio" className="px-5 max-w-7xl mx-auto w-full border-t border-zinc-150 dark:border-zinc-900 pt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Header */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-3">
             <div className="w-16 h-16 border border-zinc-200 dark:border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 dark:text-zinc-600">
               <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -143,9 +143,9 @@ export const Home = () => {
           </div>
 
           {/* Details */}
-          <div className="lg:col-span-8 space-y-12">
-            <div className="border-b border-zinc-100 dark:border-zinc-900/60 pb-8">
-              <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-6">
+          <div className="lg:col-span-8 space-y-6">
+            <div className="border-b border-zinc-100 dark:border-zinc-900/60 pb-4">
+              <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3">
                 Experiencia Reciente
               </h3>
               <div className="space-y-2">
@@ -162,8 +162,8 @@ export const Home = () => {
             </div>
 
             {/* Software badges */}
-            <div>
-              <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-6">
+            <div className="">
+              <h3 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3">
                 Software & Herramientas
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -187,24 +187,24 @@ export const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto-inicio" className="px-6 max-w-7xl mx-auto w-full border-t border-zinc-150 dark:border-zinc-900 pt-20 pb-16">
-        <div className="text-center space-y-10 py-12">
+      <section id="contacto-inicio" className="px-5 max-w-7xl mx-auto w-full border-t border-zinc-150 dark:border-zinc-900 pt-10 pb-10">
+        <div className="text-center space-y-5 py-6">
           <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
             Contacto
           </h2>
-          <div className="space-y-4">
-            <p className="text-3xl font-light text-zinc-400 dark:text-zinc-600">
+          <div className="space-y-2">
+            <p className="text-xl font-light text-zinc-400 dark:text-zinc-600">
               Iniciemos un diálogo
             </p>
             <a
               href="mailto:hola@studio-arch.com"
-              className="hover-target inline-block text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-zinc-950 dark:text-white border-b border-zinc-200 dark:border-zinc-800 pb-2 hover:border-zinc-950 dark:hover:border-white transition-colors duration-500"
+              className="hover-target inline-block text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-zinc-950 dark:text-white border-b border-zinc-200 dark:border-zinc-800 pb-1 hover:border-zinc-950 dark:hover:border-white transition-colors duration-500"
             >
               hola@studio-arch.com
             </a>
           </div>
 
-          <div className="flex justify-center space-x-12 pt-8 text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500">
+          <div className="flex justify-center space-x-8 pt-4 text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500">
             {['Instagram', 'LinkedIn', 'Behance'].map((social) => (
               <a
                 key={social}

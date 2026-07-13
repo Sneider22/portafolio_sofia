@@ -26,10 +26,10 @@ export const About = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="pt-32 pb-24 px-6 max-w-7xl mx-auto w-full min-h-screen"
+      className="pt-24 pb-12 px-5 max-w-7xl mx-auto w-full min-h-screen"
     >
       {/* Page Header */}
-      <header className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 mb-16 border-b border-zinc-150 dark:border-zinc-900 pb-12">
+      <header className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 mb-8 border-b border-zinc-150 dark:border-zinc-900 pb-6">
         <div className="flex items-center space-x-6">
           <div className="w-20 h-20 border border-zinc-200 dark:border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 dark:text-zinc-600 bg-zinc-50 dark:bg-zinc-900/10">
             <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -52,18 +52,18 @@ export const About = () => {
       </header>
 
       {/* CV Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
         {/* Left Column (Experience & Education) (Cols 1-8) */}
-        <div className="lg:col-span-8 space-y-12">
+        <div className="lg:col-span-8 space-y-8">
           {/* Experience */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          <motion.div variants={itemVariants} className="space-y-4">
             <div className="border-b border-zinc-100 dark:border-zinc-900 pb-4">
               <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
                 Experiencia Profesional
               </h2>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-4">
               {/* Job 1 */}
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
@@ -97,14 +97,14 @@ export const About = () => {
           </motion.div>
 
           {/* Education */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          <motion.div variants={itemVariants} className="space-y-4">
             <div className="border-b border-zinc-100 dark:border-zinc-900 pb-4">
               <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
                 Educación Académica
               </h2>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Degree 1 */}
               <div className="space-y-1">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
@@ -133,9 +133,9 @@ export const About = () => {
         </div>
 
         {/* Right Column (Software & Languages) (Cols 9-12) */}
-        <div className="lg:col-span-4 space-y-12 lg:border-l lg:border-zinc-100 lg:dark:border-zinc-900 lg:pl-12">
+        <div className="lg:col-span-4 space-y-8 lg:border-l lg:border-zinc-100 lg:dark:border-zinc-900 lg:pl-8">
           {/* Software */}
-          <motion.div variants={itemVariants} className="space-y-6">
+          <motion.div variants={itemVariants} className="space-y-3">
             <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-4">
               Software & Herramientas
             </h2>
@@ -158,11 +158,11 @@ export const About = () => {
           </motion.div>
 
           {/* Languages */}
-          <motion.div variants={itemVariants} className="space-y-6">
+          <motion.div variants={itemVariants} className="space-y-3">
             <h2 className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-4">
               Idiomas
             </h2>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-2 text-sm">
               <li className="space-y-0.5">
                 <span className="font-medium text-zinc-950 dark:text-white block">Español</span>
                 <span className="text-zinc-500 dark:text-zinc-400 text-xs block">Nativo</span>
