@@ -1,30 +1,30 @@
 export const projectsData = [
   {
-    slug: "hotel-4-estrellas",
-    title: "Hotel 4 Estrellas",
-    category: "Hospitalidad",
+    slug: "terminal-de-autobuses-la-hoyada",
+    title: "TERMINAL DE AUTOBUSES",
+    category: "Institucional",
     shortDesc: "Complejo hotelero enfocado en confort del huésped y su integración con el paisaje.",
-    longDesc: "Diseño de un complejo hotelero de 4 estrellas enfocado en el confort del huésped y la integración armónica con el paisaje local. El proyecto contempla zonas de recepción, áreas comunes y distribución de habitaciones optimizando las vistas y el asoleamiento.",
-    heroImage: "/assets/proj1.png",
+    longDesc: "El proyecto del Terminal de Autobuses Interurbano, ubicado en La Hoyada (Caracas), está delimitado por las avenidas Bolívar, Lecuna, Sur 9 y Sur 5. Su diseño utiliza la avenida Fuerzas Armadas como eje organizador, dividiendo el complejo en dos grandes sectores: el Terminal Oeste, destinado a las rutas de Occidente, y el Terminal Este, para las de Oriente. Ambas zonas están unidas por un puente conector que también funciona como galería de arte. Concebido como un nodo intermodal, el conjunto integra en su periferia paradas de transporte urbano, una zona de taxis y áreas independientes destinadas al mantenimiento y a los servicios para empleados. En cuanto a su distribución, la planta baja concentra el flujo operativo a través de un gran lobby, áreas de taquillas y check-in, además de una zona privada de llegadas y salidas con acceso directo a los andenes. Por su parte, el primer piso se reserva para el ámbito administrativo y de esparcimiento, albergando la feria de comida, un área infantil, las oficinas de gestión y el recorrido cultural de la galería.",
+    heroImage: "/assets/terminal/render1.jpeg",
     renders: [
-      "/assets/proj3.png",
-      "/assets/proj1.png"
+      "/assets/terminal/render1.jpeg",
+      "/assets/terminal/render2.jpeg",
+      "/assets/terminal/render3.png",
+      "/assets/terminal/render4.png",
+      "/assets/terminal/render5.png",
+      "/assets/terminal/render6.png",
+      "/assets/terminal/render7.png",
+      "/assets/terminal/render8.png",
+      "/assets/terminal/render9.png"
     ],
     blueprints: [
-      "/assets/proj2.png",
-      "/assets/proj3.png"
+      "/assets/terminal/plano1.jpeg",
+      "/assets/terminal/plano2.jpeg",
     ],
-    blueprintFilter: "grayscale(1) invert(0.8) contrast(1.2)",
     concepts: [
-      "/assets/proj1.png",
-      "/assets/proj2.png"
+      "/assets/terminal/concepto1.jpeg",
+      "/assets/terminal/concepto2.jpeg"
     ],
-    conceptFilter: "sepia(0.8) hue-rotate(-30deg)",
-    video: {
-      url: "#",
-      poster: "/assets/proj1.png",
-      caption: "Animación Arquitectónica - Recorrido Virtual"
-    },
     prevSlug: "renovacion-terraza",
     nextSlug: "mercado-municipal"
   },

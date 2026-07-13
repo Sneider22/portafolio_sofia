@@ -6,6 +6,7 @@ export const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [cursorText, setCursorText] = useState('');
 
   useEffect(() => {
     // Hide cursor on touch devices
@@ -33,6 +34,15 @@ export const CustomCursor = () => {
 
     const handleMouseOver = (e) => {
       const target = e.target;
+
+      const customCursorElement = target.closest('[data-cursor]');
+      if (customCursorElement) {
+        setCursorText(customCursorElement.getAttribute('data-cursor'));
+        setIsHovered(true);
+        return;
+      }
+
+      setCursorText('');
       const isClickable = 
         target.tagName === 'A' || 
         target.tagName === 'BUTTON' || 
@@ -79,16 +89,20 @@ export const CustomCursor = () => {
         ref={dotRef} 
         className={`custom-cursor-dot transition-transform duration-200 ${
           isHovered ? 'scale-[2.5] bg-zinc-950 dark:bg-zinc-50' : ''
-        } ${isClicked ? 'scale-[0.8]' : ''}`}
+        } ${isClicked ? 'scale-[0.8]' : ''} ${cursorText ? 'opacity-0 scale-0' : ''}`}
       />
       <div 
         ref={outlineRef} 
-        className={`custom-cursor-outline ${
-          isHovered 
-            ? 'scale-[1.8] border-zinc-950 dark:border-zinc-50 bg-zinc-950/5 dark:bg-zinc-50/5' 
-            : ''
+        className={`custom-cursor-outline flex items-center justify-center font-mono text-[8px] tracking-widest text-zinc-950 dark:text-zinc-50 uppercase transition-all duration-300 ${
+          cursorText
+            ? 'scale-[2.6] border-zinc-950 dark:border-zinc-50 bg-zinc-950/10 dark:bg-zinc-50/15'
+            : isHovered 
+              ? 'scale-[1.8] border-zinc-950 dark:border-zinc-50 bg-zinc-950/5 dark:bg-zinc-50/5' 
+              : ''
         } ${isClicked ? 'scale-[0.9]' : ''}`}
-      />
+      >
+        {cursorText}
+      </div>
     </>
   );
 };

@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="relative min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 font-sans transition-colors duration-300 flex flex-col justify-between">
+        <div className="relative min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 font-sans bg-grid-pattern transition-colors duration-300 flex flex-col justify-between">
           <div>
             {/* Double Cursor */}
             <CustomCursor />

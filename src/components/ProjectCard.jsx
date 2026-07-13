@@ -11,7 +11,7 @@ export const ProjectCard = ({ project, index }) => {
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="group"
     >
-      <Link to={`/proyecto/${project.slug}`} className="block hover-target">
+      <Link to={`/proyecto/${project.slug}`} data-cursor="ver" className="block hover-target">
         {/* Image Frame */}
         <div className="card-img-wrapper overflow-hidden relative aspect-[4/3] border border-zinc-100 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-900/10">
           <img

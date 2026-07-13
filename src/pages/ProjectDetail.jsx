@@ -49,7 +49,8 @@ const DetailCarousel = ({ images, filterStyle = {}, onImageClick }) => {
     <div className="relative w-full aspect-[16/9] border border-zinc-150 dark:border-zinc-900 overflow-hidden group bg-zinc-50 dark:bg-zinc-900/10">
       {/* Slides */}
       <div 
-        className="absolute inset-0 w-full h-full cursor-zoom-in"
+        className="absolute inset-0 w-full h-full cursor-zoom-in hover-target"
+        data-cursor="zoom"
         onClick={() => onImageClick(images[index])}
       >
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -61,8 +62,8 @@ const DetailCarousel = ({ images, filterStyle = {}, onImageClick }) => {
             animate="center"
             exit="exit"
             transition={{
-              x: { duration: 0.6, ease: customEase },
-              opacity: { duration: 0.3 }
+              x: { duration: 0.4, ease: customEase },
+              opacity: { duration: 0.2 }
             }}
             className="absolute inset-0 w-full h-full"
           >
