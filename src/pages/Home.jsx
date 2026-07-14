@@ -56,7 +56,7 @@ export const Home = () => {
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 className="inline-block"
               >
-                Arquitectura
+                Portafolio de
               </motion.span>
             </span>
             <span className="block overflow-hidden relative">
@@ -66,7 +66,7 @@ export const Home = () => {
                 transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="inline-block italic font-serif text-zinc-500 dark:text-zinc-400"
               >
-                Sensorial
+                Arquitectura
               </motion.span>
             </span>
           </h1>
@@ -96,7 +96,7 @@ export const Home = () => {
       {/* Cinematic Rotative Gallery Section */}
       <section id="gallery-section" className="px-5 max-w-7xl mx-auto w-full scroll-mt-20">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-4">
-          <h2 className="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-300">
+          <h2 className="text-2xl font-light tracking-tight text-zinc-950 dark:text-white">
             Galería Cinemática
           </h2>
           <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 hidden md:block">
@@ -130,7 +130,7 @@ export const Home = () => {
               {!imageError ? (
                 <img
                   src="/assets/perfil.jpeg"
-                  alt="Sofia Sneider"
+                  alt="Sofia"
                   className="w-full h-full object-cover"
                   onError={() => setImageError(true)}
                 />
@@ -145,7 +145,7 @@ export const Home = () => {
               Sobre mí
             </h2>
             <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-xs">
-              Arquitecta apasionada por la creación de espacios atemporales y la atención minuciosa al detalle.
+              Arquitecta apasionada por el diseño sostenible y la neuroarquitectura. Creo espacios abiertos y saludables que no solo respetan el entorno, sino que mejoran el bienestar emocional de quienes los habitan.
             </p>
           </div>
 
@@ -153,17 +153,17 @@ export const Home = () => {
           <div className="lg:col-span-8 space-y-6">
             <div className="border-b border-zinc-100 dark:border-zinc-900/60 pb-4">
               <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-3">
-                Experiencia Reciente
+                Educación Académica
               </h3>
               <div className="space-y-2">
                 <h4 className="text-md font-normal text-zinc-950 dark:text-white">
-                  Arquitecta Proyectista
+                  Arquitectura
                 </h4>
                 <p className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-                  Estudio de Arquitectura / 2021 — Presente
+                  Universidad Santa María / 2021 - Presente
                 </p>
                 <p className="text-zinc-700 dark:text-zinc-200 text-sm max-w-xl leading-relaxed mt-2">
-                  Desarrollo conceptual, modelado 3D BIM, y planimetría para proyectos residenciales y comerciales de alto perfil.
+                  Desarrollo conceptual, modelado 3D BIM, creación de renders y planimetría para proyectos residenciales y comerciales de alto perfil. Integro criterios de diseño sostenible y bienestar espacial, asegurando que cada propuesta sea estéticamente impecable y viable.
                 </p>
               </div>
             </div>
@@ -205,10 +205,10 @@ export const Home = () => {
               Iniciemos un diálogo
             </p>
             <a
-              href="mailto:hola@studio-arch.com"
+              href="mailto:sofiavsh66@gmail.com"
               className="hover-target inline-block text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-zinc-950 dark:text-white border-b border-zinc-200 dark:border-zinc-800 pb-1 hover:border-zinc-950 dark:hover:border-white transition-colors duration-500"
             >
-              hola@studio-arch.com
+              sofiavsh66@gmail.com
             </a>
           </div>
 

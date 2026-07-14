@@ -181,7 +181,7 @@ export const ProjectDetail = () => {
       <div id="project-gallery" className="max-w-7xl mx-auto px-5 space-y-10 md:space-y-16 scroll-mt-20">
         {/* Description Section */}
         <section className="border-t border-zinc-100 dark:border-zinc-900 pt-6">
-          <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-4">
+          <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-4">
             Descripción
           </h3>
           <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-[1.85] font-light max-w-3xl">
@@ -191,7 +191,7 @@ export const ProjectDetail = () => {
 
         {/* Renders Section */}
         <section className="space-y-4">
-          <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
+          <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
             Renders Fotorrealistas
           </h3>
           <DetailCarousel 
@@ -208,7 +208,7 @@ export const ProjectDetail = () => {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Blueprints / Planos */}
           <div className="space-y-4">
-            <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
+            <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
               Planos Arquitectónicos
             </h3>
             <DetailCarousel 
@@ -224,7 +224,7 @@ export const ProjectDetail = () => {
 
           {/* Concept sketches */}
           <div className="space-y-4">
-            <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
+            <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
               Concepto Generador
             </h3>
             <DetailCarousel 
@@ -242,7 +242,7 @@ export const ProjectDetail = () => {
         {/* Video Recorrido Section (If available) */}
         {project.video && (
           <section className="space-y-3 border-t border-zinc-100 dark:border-zinc-900 pt-8">
-            <h3 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-3">
+            <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-3">
               Video Recorrido
             </h3>
             <div className="aspect-video w-full border border-zinc-150 dark:border-zinc-900 overflow-hidden bg-black relative">

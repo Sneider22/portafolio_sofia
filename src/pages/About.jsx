@@ -69,38 +69,17 @@ export const About = () => {
           <motion.div variants={itemVariants} className="space-y-4">
             <div className="border-b border-zinc-100 dark:border-zinc-900 pb-4">
               <h2 className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-                Experiencia Profesional
+                Perfil Profesional
               </h2>
             </div>
 
             <div className="space-y-4">
               {/* Job 1 */}
               <div className="space-y-2">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-md font-normal text-zinc-950 dark:text-white">
-                    Arquitecta Proyectista
-                  </h3>
-                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-                    Estudio de Arquitectura / 2021 — Presente
-                  </span>
-                </div>
                 <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-2xl">
-                  Desarrollo conceptual, modelado 3D BIM, y planimetría para proyectos residenciales y comerciales de alto perfil.
-                </p>
-              </div>
+                  Estudiante de último semestre de Arquitectura en la Universidad Santa Maria sede La Florencia, con fuerte interés en el desarrollo técnico de proyectos y la metodología BIM.
 
-              {/* Job 2 */}
-              <div className="space-y-2">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-md font-normal text-zinc-950 dark:text-white">
-                    Arquitecta Junior
-                  </h3>
-                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-                    Firma Creativa SRL / 2019 — 2021
-                  </span>
-                </div>
-                <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed max-w-2xl">
-                  Asistencia en la elaboración de proyectos ejecutivos y renderizado fotorrealista. Coordinación con proveedores.
+                  Durante mi etapa académica he desarrollado una sólida base en el diseño de proyectos residenciales, comerciales, recreativos, entre otros, destacando por mi capacidad de organización, trabajo bajo presión y atención al detalle en la documentación técnica. Dominio de herramientas como AutoCAD, Revit, SketchUp y D5.
                 </p>
               </div>
             </div>
@@ -118,24 +97,17 @@ export const About = () => {
               {/* Degree 1 */}
               <div className="space-y-1">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-md font-normal text-zinc-950 dark:text-white">
-                    Máster en Diseño Arquitectónico
-                  </h3>
-                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-                    Univ. de Arquitectura Europea / 2022 — 2023
-                  </span>
-                </div>
-              </div>
-
-              {/* Degree 2 */}
-              <div className="space-y-1">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-md font-normal text-zinc-950 dark:text-white">
-                    Licenciatura en Arquitectura
-                  </h3>
-                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
-                    Universidad Nacional / 2014 — 2019
-                  </span>
+                  <div className="space-y-2">
+                    <h4 className="text-md font-normal text-zinc-950 dark:text-white">
+                      Arquitectura - Estudiante 10mo Semestre
+                    </h4>
+                    <p className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
+                      Universidad Santa María / 2021 - Presente
+                    </p>
+                    <p className="text-zinc-700 dark:text-zinc-200 text-sm max-w-xl leading-relaxed mt-2">
+                      Desarrollo conceptual, modelado 3D BIM, creación de renders y planimetría para proyectos residenciales y comerciales de alto perfil. Integro criterios de diseño sostenible y bienestar espacial, asegurando que cada propuesta sea estéticamente impecable y viable.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

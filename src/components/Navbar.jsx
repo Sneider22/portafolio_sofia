@@ -20,10 +20,10 @@ export const Navbar = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Inicio',    path: '/' },
+    { name: 'Inicio', path: '/' },
     { name: 'Proyectos', path: '/proyectos' },
-    { name: 'Sobre mí',  path: '/sobre-mi' },
-    { name: 'Contacto',  path: '/contacto' },
+    { name: 'Sobre mí', path: '/sobre-mi' },
+    { name: 'Contacto', path: '/contacto' },
   ];
 
   const isLinkActive = (path) => {
@@ -37,11 +37,10 @@ export const Navbar = () => {
         initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled
             ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 shadow-sm'
             : 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-900'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
 
@@ -52,7 +51,7 @@ export const Navbar = () => {
               <span className="absolute inset-[3px] bg-zinc-950 dark:bg-white rotate-45 scale-50 group-hover:scale-75 group-hover:rotate-[60deg] transition-all duration-500" />
             </div>
             <span className="text-sm font-semibold tracking-[0.2em] font-mono text-zinc-950 dark:text-white uppercase">
-              Studio
+              Sofia Studio
             </span>
           </Link>
 
@@ -62,11 +61,10 @@ export const Navbar = () => {
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`hover-target relative px-4 py-2 text-[11px] tracking-[0.15em] uppercase font-mono transition-colors duration-300 rounded-sm ${
-                    isLinkActive(link.path)
+                  className={`hover-target relative px-4 py-2 text-[11px] tracking-[0.15em] uppercase font-mono transition-colors duration-300 rounded-sm ${isLinkActive(link.path)
                       ? 'text-zinc-950 dark:text-white'
                       : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white'
-                  }`}
+                    }`}
                 >
                   {link.name}
                   {isLinkActive(link.path) && (
@@ -133,15 +131,12 @@ export const Navbar = () => {
               className="md:hidden hover-target flex flex-col justify-center items-end gap-[5px] w-8 h-8 group"
               aria-label="Toggle menu"
             >
-              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-400 ${
-                mobileMenuOpen ? 'w-5 rotate-45 translate-y-[6px]' : 'w-5'
-              }`} />
-              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-300 ${
-                mobileMenuOpen ? 'w-0 opacity-0' : 'w-3 group-hover:w-5'
-              }`} />
-              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-400 ${
-                mobileMenuOpen ? 'w-5 -rotate-45 -translate-y-[6px]' : 'w-4 group-hover:w-5'
-              }`} />
+              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-400 ${mobileMenuOpen ? 'w-5 rotate-45 translate-y-[6px]' : 'w-5'
+                }`} />
+              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-300 ${mobileMenuOpen ? 'w-0 opacity-0' : 'w-3 group-hover:w-5'
+                }`} />
+              <span className={`h-[1px] bg-zinc-950 dark:bg-white transition-all duration-400 ${mobileMenuOpen ? 'w-5 -rotate-45 -translate-y-[6px]' : 'w-4 group-hover:w-5'
+                }`} />
             </button>
           </div>
         </div>
@@ -179,11 +174,10 @@ export const Navbar = () => {
                 >
                   <Link
                     to={link.path}
-                    className={`hover-target group flex items-baseline gap-5 py-4 border-b border-zinc-100 dark:border-zinc-900 transition-colors duration-200 ${
-                      isLinkActive(link.path)
+                    className={`hover-target group flex items-baseline gap-5 py-4 border-b border-zinc-100 dark:border-zinc-900 transition-colors duration-200 ${isLinkActive(link.path)
                         ? 'text-zinc-950 dark:text-white'
                         : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
-                    }`}
+                      }`}
                   >
                     <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 w-5 shrink-0 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                       {String(i + 1).padStart(2, '0')}

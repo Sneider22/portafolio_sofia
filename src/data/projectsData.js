@@ -47,8 +47,8 @@ export const projectsData = [
       "/assets/mercado/render9.jpeg"
     ],
     blueprints: [
-      "/assets/mercado/plano1.jpeg",
       "/assets/mercado/plano2.jpeg",
+      "/assets/mercado/plano1.jpeg",
       "/assets/mercado/plano3.jpeg",
     ],
     blueprintFilter: "grayscale(1) invert(0.8) contrast(1.2)",
@@ -90,23 +90,24 @@ export const projectsData = [
     category: "Deportivo",
     shortDesc: "Polideportivo que integra áreas recreativas, deportivas y comerciales. Un espacio multifuncional diseñado para revitalizar el entorno urbano.",
     longDesc: "El Polideportivo es un centro multifuncional que integra áreas deportivas, recreativas y comerciales en tres niveles, optimizando su operatividad mediante accesos diferenciados según su uso. La planta baja centraliza las actividades acuáticas, la cancha múltiple, comercios y la administración; el segundo nivel se enfoca en pádel y tenis; mientras que el tercer nivel se destina a gimnasia, disciplinas de combate y una terraza de usos múltiples.",
-    heroImage: "/assets/polideportivo/render1.jpeg",
+    heroImage: "/assets/polideportivo/render 1.png",
     renders: [
-      "/assets/polideportivo/render1.jpeg",
-      "/assets/polideportivo/render2.jpeg",
-      "/assets/polideportivo/render3.jpeg",
-      "/assets/polideportivo/render4.jpeg",
-      "/assets/polideportivo/render5.jpeg",
-      "/assets/polideportivo/render6.jpeg",
-      "/assets/polideportivo/render7.jpeg",
-      "/assets/polideportivo/render8.jpeg",
-      "/assets/polideportivo/render9.jpeg",
-      "/assets/polideportivo/render10.jpeg"
+      "/assets/polideportivo/render 1.png",
+      "/assets/polideportivo/render 2.png",
+      "/assets/polideportivo/render 3.png",
+      "/assets/polideportivo/render 4.png",
+      "/assets/polideportivo/render 5.png",
+      "/assets/polideportivo/render 6.png",
+      "/assets/polideportivo/render 7.png",
+      "/assets/polideportivo/render 8.png",
+      "/assets/polideportivo/render 9.png",
+      "/assets/polideportivo/render 10.png",
+      "/assets/polideportivo/render 11.png"
     ],
     blueprints: [
+      "/assets/polideportivo/plano3.jpeg",
       "/assets/polideportivo/plano1.jpeg",
       "/assets/polideportivo/plano2.jpeg",
-      "/assets/polideportivo/plano3.jpeg"
     ],
     blueprintFilter: "grayscale(1) invert(0.8) contrast(1.2)",
     concepts: [

@@ -25,10 +25,10 @@ export const Contact = () => {
         {/* Email Address */}
         <div className="border-t border-b border-zinc-100 dark:border-zinc-900 py-12 w-full">
           <a
-            href="mailto:hola@studio-arch.com"
+            href="mailto:sofiavsh66@gmail.com.com"
             className="hover-target inline-block text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-zinc-950 dark:text-white border-b border-transparent hover:border-zinc-950 dark:hover:border-white transition-all duration-500 pb-2 break-all"
           >
-            hola@studio-arch.com
+            sofiavsh66@gmail.com
           </a>
         </div>
 
