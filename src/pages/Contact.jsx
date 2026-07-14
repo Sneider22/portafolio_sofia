@@ -33,7 +33,7 @@ export const Contact = () => {
         </div>
 
         {/* Socials */}
-        <div className="flex flex-wrap gap-8 md:gap-16 text-xs font-mono tracking-widest text-zinc-400 dark:text-zinc-500">
+        <div className="flex justify-center flex-wrap gap-8 sm:gap-16 text-sm sm:text-base font-mono tracking-widest text-zinc-500 dark:text-zinc-300 w-full pt-4">
           {['Instagram', 'LinkedIn', 'Behance'].map((social) => (
             <a
               key={social}

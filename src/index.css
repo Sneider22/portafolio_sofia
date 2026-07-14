@@ -43,7 +43,7 @@
   height: 6px;
   left: -100px;
   top: -100px;
-  @apply bg-zinc-950 dark:bg-zinc-50 rounded-full fixed pointer-events-none z-[100000] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75;
+  @apply bg-zinc-950 dark:bg-zinc-50 rounded-full fixed pointer-events-none z-[999999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75;
 }
 
 .custom-cursor-outline {
@@ -51,7 +51,7 @@
   height: 32px;
   left: -100px;
   top: -100px;
-  @apply border border-zinc-950/20 dark:border-zinc-50/20 rounded-full fixed pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out;
+  @apply border border-zinc-950/20 dark:border-zinc-50/20 rounded-full fixed pointer-events-none z-[999998] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out;
 }
 
 /* Remove default pointer cursors on desktop if custom cursor is active */
@@ -109,5 +109,15 @@
   background-image: 
     linear-gradient(to right, rgba(250, 250, 250, 0.015) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(250, 250, 250, 0.015) 1px, transparent 1px);
+}
+
+/* Force white cursor when lightbox is open (overriding light mode theme colors) */
+body:has(.lightbox-overlay) .custom-cursor-dot {
+  background-color: #fafafa !important;
+}
+
+body:has(.lightbox-overlay) .custom-cursor-outline {
+  border-color: rgba(250, 250, 250, 0.3) !important;
+  color: #fafafa !important;
 }
 

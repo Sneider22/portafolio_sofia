@@ -71,6 +71,14 @@ export const Home = () => {
             </span>
           </h1>
 
+          {/* Sofía Sánchez Name Badge */}
+          <motion.div
+            variants={itemVariants}
+            className="text-base md:text-lg font-mono tracking-[0.25em] uppercase text-zinc-800 dark:text-zinc-200 font-semibold pt-2 pb-1"
+          >
+            Sofía Sánchez
+          </motion.div>
+
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
@@ -212,7 +220,7 @@ export const Home = () => {
             </a>
           </div>
 
-          <div className="flex justify-center space-x-8 pt-4 text-xs font-mono tracking-widest text-zinc-500 dark:text-zinc-300">
+          <div className="flex justify-center flex-wrap gap-8 sm:gap-16 pt-6 text-sm sm:text-base font-mono tracking-widest text-zinc-500 dark:text-zinc-300">
             {['Instagram', 'LinkedIn', 'Behance'].map((social) => (
               <a
                 key={social}

@@ -108,7 +108,16 @@ const DetailCarousel = ({ images, filterStyle = {}, onImageClick, aspectRatio = 
 
 export const ProjectDetail = () => {
   const { slug } = useParams();
-  const [activeLightboxImage, setActiveLightboxImage] = useState(null);
+  const [lightboxState, setLightboxState] = useState({ isOpen: false, images: [], index: 0 });
+
+  const openLightbox = (imagesList, src) => {
+    const idx = imagesList.indexOf(src);
+    setLightboxState({
+      isOpen: true,
+      images: imagesList,
+      index: idx >= 0 ? idx : 0
+    });
+  };
 
   // Find project details
   const project = projectsData.find((p) => p.slug === slug);
@@ -197,7 +206,7 @@ export const ProjectDetail = () => {
           <DetailCarousel 
             images={project.renders}
             aspectRatio="aspect-[4/3] md:aspect-[16/8]"
-            onImageClick={(src) => setActiveLightboxImage(src)} 
+            onImageClick={(src) => openLightbox(project.renders, src)} 
           />
           <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-right">
             Perspectivas Exteriores e Interiores
@@ -215,7 +224,7 @@ export const ProjectDetail = () => {
               images={project.blueprints}
               aspectRatio="aspect-[4/3]"
               filterStyle={{}}
-              onImageClick={(src) => setActiveLightboxImage(src)}
+              onImageClick={(src) => openLightbox(project.blueprints, src)}
             />
             <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-left">
               Plantas Arquitectónicas y Cortes Generales
@@ -231,7 +240,7 @@ export const ProjectDetail = () => {
               images={project.concepts}
               aspectRatio="aspect-[4/3]"
               filterStyle={{}}
-              onImageClick={(src) => setActiveLightboxImage(src)}
+              onImageClick={(src) => openLightbox(project.concepts, src)}
             />
             <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-right">
               Exploración Volumétrica y Esquemas de Luz
@@ -280,11 +289,14 @@ export const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Lightbox for image clicks */}
+      {/* Lightbox for image clicks with full slideshow support */}
       <Lightbox
-        isOpen={!!activeLightboxImage}
-        imageSrc={activeLightboxImage}
-        onClose={() => setActiveLightboxImage(null)}
+        isOpen={lightboxState.isOpen}
+        images={lightboxState.images}
+        currentIndex={lightboxState.index}
+        onPrev={() => setLightboxState(prev => ({ ...prev, index: prev.index === 0 ? prev.images.length - 1 : prev.index - 1 }))}
+        onNext={() => setLightboxState(prev => ({ ...prev, index: prev.index === prev.images.length - 1 ? 0 : prev.index + 1 }))}
+        onClose={() => setLightboxState(prev => ({ ...prev, isOpen: false }))}
       />
     </motion.div>
   );

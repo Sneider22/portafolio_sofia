@@ -49,10 +49,10 @@ export const About = () => {
           </div>
           <div className="space-y-1">
             <h1 className="text-4xl md:text-5xl font-light tracking-tight text-zinc-950 dark:text-white">
-              Sobre mí
+              Sofía Sánchez
             </h1>
             <p className="text-zinc-600 dark:text-zinc-300 text-xs font-mono tracking-widest uppercase">
-              Curriculum Vitae
+              Sobre mí &mdash; Curriculum Vitae
             </p>
           </div>
         </div>
