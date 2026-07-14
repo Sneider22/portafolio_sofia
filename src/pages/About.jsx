@@ -52,7 +52,7 @@ export const About = () => {
               Sofía Sánchez
             </h1>
             <p className="text-zinc-600 dark:text-zinc-300 text-xs font-mono tracking-widest uppercase">
-              Sobre mí &mdash; Curriculum Vitae
+              Sobre mí &mdash;
             </p>
           </div>
         </div>
