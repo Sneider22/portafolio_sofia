@@ -1,304 +1,194 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { projectsData } from '../data/projectsData';
+import { motion } from 'framer-motion';
+import { projectsData, getProjectNeighbors } from '../data/projectsData';
+import { full } from '../lib/images';
 import { Lightbox } from '../components/Lightbox';
+import { Img } from '../components/Img';
+import { Reveal, LineReveal, EASE } from '../components/Reveal';
 
-// A modular inline carousel for renders, blueprints, and concept sketches
-const DetailCarousel = ({ images, filterStyle = {}, onImageClick, aspectRatio = 'aspect-[16/8]' }) => {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+const SectionTitle = ({ index, title, count }) => (
+  <Reveal className="mb-8 flex items-baseline justify-between gap-4 border-t border-line pt-6 md:mb-10">
+    <h2 className="flex items-baseline gap-4 font-serif text-3xl font-medium md:text-5xl">
+      <span className="font-serif text-2xl italic text-accent md:text-3xl">{index}</span>
+      {title}
+    </h2>
+    <span className="eyebrow text-muted">
+      {String(count).padStart(2, '0')} {count === 1 ? 'imagen' : 'imágenes'}
+    </span>
+  </Reveal>
+);
 
-  // Reset index when images list changes
-  useEffect(() => {
-    setIndex(0);
-  }, [images]);
-
-  if (!images || images.length === 0) return null;
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setDirection(-1);
-    setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setDirection(1);
-    setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  const slideVariants = {
-    enter: (dir) => ({
-      x: dir > 0 ? '100%' : '-100%',
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (dir) => ({
-      x: dir < 0 ? '100%' : '-100%',
-      opacity: 0,
-    }),
-  };
-
-  const customEase = [0.16, 1, 0.3, 1];
-
-  return (
-    <div className={`relative w-full ${aspectRatio} border border-zinc-150 dark:border-zinc-900 overflow-hidden group bg-zinc-50 dark:bg-zinc-900/10`}>
-      {/* Slides */}
-      <div 
-        className="absolute inset-0 w-full h-full cursor-zoom-in hover-target"
-        data-cursor="zoom"
-        onClick={() => onImageClick(images[index])}
-      >
-        <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <motion.div
-            key={index}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { duration: 0.4, ease: customEase },
-              opacity: { duration: 0.2 }
-            }}
-            className="absolute inset-0 w-full h-full"
+// Cuadrícula de imágenes que abren el visor al tocarlas.
+// `drawing` = planos y bocetos: fondo blanco y la imagen completa, sin recortar.
+const Gallery = ({ images, title, onOpen, drawing = false, featureFirst = false }) => (
+  <div className="grid grid-cols-2 gap-3 md:gap-5">
+    {images.map((path, i) => {
+      // La primera ocupa todo el ancho (si featureFirst) y, si sobra una suelta al final, también
+      const rest = featureFirst ? images.length - 1 : images.length;
+      const big = (featureFirst && i === 0) || (rest % 2 === 1 && i === images.length - 1);
+      return (
+        <Reveal key={path} delay={(i % 2) * 0.08} className={big ? 'col-span-2' : ''}>
+          <button
+            onClick={() => onOpen(i)}
+            data-cursor="zoom"
+            aria-label={`Ampliar ${title} ${i + 1}`}
+            className={`hover-target group block w-full overflow-hidden ${
+              drawing ? 'bg-white p-2 md:p-4' : 'bg-surface'
+            } ${big ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}
           >
-            <img
-              src={images[index]}
-              alt={`Slide ${index + 1}`}
-              style={filterStyle}
-              className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+            <Img
+              path={path}
+              alt={`${title} ${i + 1}`}
+              sizes={big ? '100vw' : '50vw'}
+              className={`h-full w-full transition-transform duration-[1.2s] ease-fluid group-hover:scale-[1.03] ${
+                drawing ? 'object-contain' : 'object-cover'
+              }`}
             />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Nav Controls (Only show if multiple images exist) */}
-      {images.length > 1 && (
-        <>
-          {/* Arrow Buttons */}
-          <button
-            onClick={handlePrev}
-            className="hover-target absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-white/20 bg-black/30 hover:bg-black/50 text-white flex items-center justify-center text-sm z-10 transition-colors"
-            aria-label="Anterior"
-          >
-            &lsaquo;
           </button>
-          <button
-            onClick={handleNext}
-            className="hover-target absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-white/20 bg-black/30 hover:bg-black/50 text-white flex items-center justify-center text-sm z-10 transition-colors"
-            aria-label="Siguiente"
-          >
-            &rsaquo;
-          </button>
-
-          {/* Slide Indicator Dots or text */}
-          <div className="absolute bottom-4 right-4 bg-black/40 border border-white/10 px-3 py-1 font-mono text-[10px] text-white tracking-widest uppercase z-10">
-            {String(index + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
+        </Reveal>
+      );
+    })}
+  </div>
+);
 
 export const ProjectDetail = () => {
   const { slug } = useParams();
-  const [lightboxState, setLightboxState] = useState({ isOpen: false, images: [], index: 0 });
+  const [lightbox, setLightbox] = useState({ isOpen: false, images: [], index: 0 });
 
-  const openLightbox = (imagesList, src) => {
-    const idx = imagesList.indexOf(src);
-    setLightboxState({
-      isOpen: true,
-      images: imagesList,
-      index: idx >= 0 ? idx : 0
-    });
-  };
-
-  // Find project details
   const project = projectsData.find((p) => p.slug === slug);
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center pt-24 px-6 text-center">
-        <h1 className="text-2xl font-light text-zinc-950 dark:text-white mb-4">Proyecto No Encontrado</h1>
-        <Link to="/proyectos" className="text-sm font-mono uppercase tracking-widest border-b border-zinc-900 dark:border-white pb-1">
-          Volver a Proyectos
+      <div className="flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center">
+        <h1 className="mb-6 font-serif text-4xl">Proyecto no encontrado</h1>
+        <Link to="/proyectos" className="hover-target link-line eyebrow !text-sm">
+          Volver a proyectos
         </Link>
       </div>
     );
   }
 
-  // Find previous and next projects
-  const prevProject = projectsData.find((p) => p.slug === project.prevSlug) || projectsData[0];
-  const nextProject = projectsData.find((p) => p.slug === project.nextSlug) || projectsData[0];
+  const { prev, next } = getProjectNeighbors(project.slug);
+  const number = String(projectsData.indexOf(project) + 1).padStart(2, '0');
 
-  const handleScrollToContent = () => {
-    const scrollSection = document.getElementById('project-gallery');
-    if (scrollSection) {
-      scrollSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const open = (list) => (index) =>
+    setLightbox({ isOpen: true, images: list.map(full), index });
+
+  const facts = [
+    { label: 'Tipología', value: project.category },
+    project.location && { label: 'Ubicación', value: project.location },
+    { label: 'Renders', value: project.renders.length },
+    { label: 'Planos', value: project.blueprints.length },
+  ].filter(Boolean);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="pt-20 pb-12 w-full min-h-screen"
-    >
-      {/* Back to projects */}
-      <div className="max-w-7xl mx-auto px-5 pt-6 pb-2">
-        <Link
-          to="/proyectos"
-          className="hover-target inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 group"
+    <div key={project.slug}>
+      {/* ── Portada del proyecto ───────────────────────── */}
+      <section className="relative h-[80svh] min-h-[480px] w-full overflow-hidden bg-black pt-16 text-white">
+        <motion.div
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.6, ease: EASE }}
+          className="absolute inset-0"
         >
-          <span className="group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
-          <span>Proyectos</span>
-        </Link>
-      </div>
+          <Img path={project.heroImage} alt={project.title} eager className="h-full w-full object-cover" />
+        </motion.div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
 
-      {/* Project Header */}
-      <section className="max-w-7xl mx-auto px-5 py-8 md:py-14 flex flex-col justify-center items-start min-h-[35vh]">
-        <div className="space-y-4 max-w-4xl">
-          <span className="text-xs font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest block">
-            {project.category} &mdash; Proyecto
-          </span>
-          <h1 className="text-3xl sm:text-4xl md:text-7xl font-light tracking-tight text-zinc-950 dark:text-white leading-tight">
-            {project.title}
+        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-5 pb-10 md:px-8 md:pb-14">
+          <Link
+            to="/proyectos"
+            className="hover-target group mb-6 inline-flex min-h-11 items-center gap-2 eyebrow text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] hover:text-white"
+          >
+            <span className="transition-transform group-hover:-translate-x-1">←</span> Proyectos
+          </Link>
+          <p className="eyebrow text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">
+            {number} — {project.category}
+          </p>
+          <h1 className="mt-3 font-serif text-[clamp(2.8rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-tight">
+            <LineReveal animateOnMount delay={0.3} lines={[project.title]} />
           </h1>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div 
-          onClick={handleScrollToContent}
-          className="hover-target mt-6 flex items-center space-x-4 cursor-pointer text-zinc-400 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
-        >
-          <span className="text-xs uppercase tracking-widest font-mono">Ver Obras</span>
-          <div className="w-12 h-[1px] bg-zinc-200 dark:bg-zinc-800 transition-all duration-300 relative">
-            <span className="absolute right-0 -top-[3px] text-[8px]">↓</span>
-          </div>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <div id="project-gallery" className="max-w-7xl mx-auto px-5 space-y-10 md:space-y-16 scroll-mt-20">
-        {/* Description Section */}
-        <section className="border-t border-zinc-100 dark:border-zinc-900 pt-6">
-          <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-4">
-            Descripción
-          </h3>
-          <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-[1.85] font-light max-w-3xl">
-            {project.longDesc}
-          </p>
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        {/* ── Descripción ──────────────────────────────── */}
+        <section className="grid gap-10 py-16 md:grid-cols-12 md:gap-16 md:py-24">
+          <Reveal className="md:col-span-4">
+            <dl className="divide-y divide-line border-y border-line">
+              {facts.map((f) => (
+                <div key={f.label} className="flex justify-between gap-4 py-4">
+                  <dt className="eyebrow text-muted">{f.label}</dt>
+                  <dd className="text-right text-sm">{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal delay={0.1} className="md:col-span-8">
+            <p className="font-serif text-2xl leading-snug md:text-3xl">{project.shortDesc}</p>
+            <p className="mt-6 max-w-2xl leading-[1.85] text-fg/80">{project.longDesc}</p>
+          </Reveal>
         </section>
 
-        {/* Renders Section */}
-        <section className="space-y-4">
-          <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
-            Renders Fotorrealistas
-          </h3>
-          <DetailCarousel 
-            images={project.renders}
-            aspectRatio="aspect-[4/3] md:aspect-[16/8]"
-            onImageClick={(src) => openLightbox(project.renders, src)} 
-          />
-          <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-right">
-            Perspectivas Exteriores e Interiores
-          </p>
+        {/* ── Renders ──────────────────────────────────── */}
+        <section className="pb-16 md:pb-24">
+          <SectionTitle index="01" title="Renders" count={project.renders.length} />
+          <Gallery images={project.renders} title="Render" onOpen={open(project.renders)} featureFirst />
         </section>
 
-        {/* Technical / Conceptual Dual View */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Blueprints / Planos */}
-          <div className="space-y-4">
-            <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
-              Planos Arquitectónicos
-            </h3>
-            <DetailCarousel 
-              images={project.blueprints}
-              aspectRatio="aspect-[4/3]"
-              filterStyle={{}}
-              onImageClick={(src) => openLightbox(project.blueprints, src)}
-            />
-            <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-left">
-              Plantas Arquitectónicas y Cortes Generales
-            </p>
-          </div>
-
-          {/* Concept sketches */}
-          <div className="space-y-4">
-            <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900 pb-3">
-              Concepto Generador
-            </h3>
-            <DetailCarousel 
-              images={project.concepts}
-              aspectRatio="aspect-[4/3]"
-              filterStyle={{}}
-              onImageClick={(src) => openLightbox(project.concepts, src)}
-            />
-            <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-right">
-              Exploración Volumétrica y Esquemas de Luz
-            </p>
-          </div>
+        {/* ── Planos ───────────────────────────────────── */}
+        <section className="pb-16 md:pb-24">
+          <SectionTitle index="02" title="Planos" count={project.blueprints.length} />
+          <Gallery images={project.blueprints} title="Plano" onOpen={open(project.blueprints)} drawing />
         </section>
 
-        {/* Video Recorrido Section (If available) */}
-        {project.video && (
-          <section className="space-y-3 border-t border-zinc-100 dark:border-zinc-900 pt-8">
-            <h3 className="text-sm sm:text-[15px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest mb-3">
-              Video Recorrido
-            </h3>
-            <div className="aspect-video w-full border border-zinc-150 dark:border-zinc-900 overflow-hidden bg-black relative">
-              <video 
-                controls 
-                poster={project.video.poster}
-                className="w-full h-full object-cover"
-              >
-                <source src={project.video.url} type="video/mp4" />
-                Tu navegador no soporta el formato de video mp4.
-              </video>
-            </div>
-            <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest text-right">
-              {project.video.caption}
-            </p>
-          </section>
-        )}
-
-        {/* Navigation between projects */}
-        <div className="flex items-center justify-between border-t border-zinc-150 dark:border-zinc-900 pt-6 text-[10px] font-mono tracking-widest uppercase">
-          <Link
-            to={`/proyecto/${prevProject.slug}`}
-            className="hover-target group inline-flex items-center gap-2 whitespace-nowrap text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 py-2"
-          >
-            <span className="group-hover:-translate-x-0.5 transition-transform duration-300">←</span>
-            <span>Proyecto Anterior</span>
-          </Link>
-          <Link
-            to={`/proyecto/${nextProject.slug}`}
-            className="hover-target group inline-flex items-center gap-2 whitespace-nowrap text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors duration-300 py-2"
-          >
-            <span>Siguiente Proyecto</span>
-            <span className="group-hover:translate-x-0.5 transition-transform duration-300">→</span>
-          </Link>
-        </div>
+        {/* ── Concepto ─────────────────────────────────── */}
+        <section className="pb-16 md:pb-24">
+          <SectionTitle index="03" title="Concepto" count={project.concepts.length} />
+          <Gallery images={project.concepts} title="Concepto" onOpen={open(project.concepts)} drawing />
+        </section>
       </div>
 
-      {/* Lightbox for image clicks with full slideshow support */}
+      {/* ── Siguiente proyecto ─────────────────────────── */}
+      <Link
+        to={`/proyecto/${next.slug}`}
+        data-cursor="ver"
+        className="hover-target group relative block h-[55svh] min-h-[360px] overflow-hidden bg-black text-white"
+      >
+        <Img
+          path={next.heroImage}
+          alt={next.title}
+          className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-[1.4s] ease-fluid group-hover:scale-105 group-hover:opacity-90"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-5 pb-10 md:px-8 md:pb-14">
+          <p className="eyebrow text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">Siguiente proyecto</p>
+          <p className="mt-3 flex items-baseline gap-4 font-serif text-[clamp(2.5rem,8vw,6.5rem)] font-medium leading-none tracking-tight">
+            {next.title}
+            <span className="text-3xl transition-transform duration-500 group-hover:translate-x-2 md:text-5xl">→</span>
+          </p>
+        </div>
+      </Link>
+      <div className="mx-auto max-w-7xl px-5 py-6 md:px-8">
+        <Link
+          to={`/proyecto/${prev.slug}`}
+          className="hover-target group inline-flex min-h-11 items-center gap-2 eyebrow text-muted hover:text-fg"
+        >
+          <span className="transition-transform group-hover:-translate-x-1">←</span> {prev.title}
+        </Link>
+      </div>
+
       <Lightbox
-        isOpen={lightboxState.isOpen}
-        images={lightboxState.images}
-        currentIndex={lightboxState.index}
-        onPrev={() => setLightboxState(prev => ({ ...prev, index: prev.index === 0 ? prev.images.length - 1 : prev.index - 1 }))}
-        onNext={() => setLightboxState(prev => ({ ...prev, index: prev.index === prev.images.length - 1 ? 0 : prev.index + 1 }))}
-        onClose={() => setLightboxState(prev => ({ ...prev, isOpen: false }))}
+        isOpen={lightbox.isOpen}
+        images={lightbox.images}
+        currentIndex={lightbox.index}
+        onPrev={() => setLightbox((s) => ({ ...s, index: (s.index - 1 + s.images.length) % s.images.length }))}
+        onNext={() => setLightbox((s) => ({ ...s, index: (s.index + 1) % s.images.length }))}
+        onClose={() => setLightbox((s) => ({ ...s, isOpen: false }))}
       />
-    </motion.div>
+    </div>
   );
 };
+
 export default ProjectDetail;

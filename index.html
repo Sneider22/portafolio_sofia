@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/assets/proj3.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SOFIA STUDIO | Portafolio de Arquitectura" />
-  <title>SOFIA STUDIO | Arquitectura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Sofía Sánchez · Arquitectura</title>
+  <meta name="description" content="Portafolio de arquitectura de Sofía Sánchez: terminal de autobuses, mercado municipal, centro de convenciones, polideportivo y renovación de terraza en Caracas." />
+  <meta property="og:title" content="Sofía Sánchez · Arquitectura" />
+  <meta property="og:description" content="Portafolio de arquitectura: renders, planos y conceptos." />
+  <meta property="og:image" content="/assets/terminal/render1-sm.webp" />
+  <meta name="theme-color" content="#F4F1EB" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Aplica el tema guardado antes de pintar, para que no parpadee -->
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {}
+  </script>
 </head>
 
-<body
-  class="bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 font-sans antialiased overflow-x-hidden selection:bg-zinc-200 dark:selection:bg-zinc-800">
+<body class="font-sans antialiased overflow-x-hidden">
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

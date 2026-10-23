@@ -88,16 +88,16 @@ export const CustomCursor = () => {
       <div 
         ref={dotRef} 
         className={`custom-cursor-dot transition-transform duration-200 ${
-          isHovered ? 'scale-[2.5] bg-zinc-950 dark:bg-zinc-50' : ''
+          isHovered ? 'scale-[2.5]' : ''
         } ${isClicked ? 'scale-[0.8]' : ''} ${cursorText ? 'opacity-0 scale-0' : ''}`}
       />
       <div 
         ref={outlineRef} 
-        className={`custom-cursor-outline flex items-center justify-center font-mono text-[8px] tracking-widest text-zinc-950 dark:text-zinc-50 uppercase transition-all duration-300 ${
+        className={`custom-cursor-outline flex items-center justify-center font-mono text-[8px] tracking-widest text-white uppercase transition-all duration-300 ${
           cursorText
-            ? 'scale-[2.6] border-zinc-950 dark:border-zinc-50 bg-zinc-950/10 dark:bg-zinc-50/15'
+            ? 'scale-[2.6] border-white bg-white/20'
             : isHovered 
-              ? 'scale-[1.8] border-zinc-950 dark:border-zinc-50 bg-zinc-950/5 dark:bg-zinc-50/5' 
+              ? 'scale-[1.8] border-white bg-white/10' 
               : ''
         } ${isClicked ? 'scale-[0.9]' : ''}`}
       >

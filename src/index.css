@@ -2,48 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Paleta cálida tomada de los renders: papel, tinta y terracota */
+:root {
+  --bg: 244 241 235;
+  --surface: 234 229 220;
+  --fg: 28 26 23;
+  --muted: 92 86 78;
+  --line: 219 213 203;
+  --accent: 166 84 46;
+}
+
+.dark {
+  --bg: 19 18 16;
+  --surface: 30 28 26;
+  --fg: 238 234 227;
+  --muted: 160 154 145;
+  --line: 48 45 42;
+  --accent: 212 128 86;
+}
+
 @layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
-    @apply antialiased transition-colors duration-300;
-    /* Light mode: true dark text */
-    color: theme('colors.zinc.900');
+    @apply bg-bg text-fg transition-colors duration-300;
   }
-  .dark body {
-    /* Dark mode: true white text */
-    color: theme('colors.zinc.50');
+
+  ::selection {
+    @apply bg-accent text-bg;
   }
 }
 
-/* Custom architectural lines and grids */
-.arch-grid-line {
-  @apply border-t border-zinc-200 dark:border-zinc-800 w-full block;
+/* Etiquetas pequeñas en mayúsculas (sobre títulos, fichas, pie de página) */
+@layer components {
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] sm:text-[13px];
+  }
 }
 
-.arch-vertical-line {
-  @apply border-l border-zinc-200 dark:border-zinc-800 h-full block;
-}
-
-/* Scrollbar styles - technical monospace look */
+/* Scrollbar fino */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 dark:hover:bg-zinc-700 transition-colors;
+  @apply bg-line rounded-full;
 }
 
-/* Cursor elements */
+/* Ocultar la barra en carruseles horizontales táctiles */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Cursor personalizado (solo con mouse) */
 .custom-cursor-dot {
   width: 6px;
   height: 6px;
   left: -100px;
   top: -100px;
-  @apply bg-zinc-950 dark:bg-zinc-50 rounded-full fixed pointer-events-none z-[999999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75;
+  @apply bg-white mix-blend-difference rounded-full fixed pointer-events-none z-[999999] -translate-x-1/2 -translate-y-1/2;
 }
 
 .custom-cursor-outline {
@@ -51,10 +76,9 @@
   height: 32px;
   left: -100px;
   top: -100px;
-  @apply border border-zinc-950/20 dark:border-zinc-50/20 rounded-full fixed pointer-events-none z-[999998] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out;
+  @apply border border-white/60 mix-blend-difference rounded-full fixed pointer-events-none z-[999998] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out;
 }
 
-/* Remove default pointer cursors on desktop if custom cursor is active */
 @media (pointer: fine) {
   .custom-cursor-active a,
   .custom-cursor-active button,
@@ -66,58 +90,31 @@
   }
 }
 
-/* Text reveal animation classes */
-.reveal-wrapper {
-  overflow: hidden;
-  position: relative;
-}
-
-.reveal-text {
-  display: inline-block;
-  transform: translateY(100%);
-  animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes revealUp {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Subtle image zoom on hover for projects */
-.card-img-wrapper img {
-  @apply transition-transform duration-1000 ease-fluid scale-100;
-}
-
-.card-img-wrapper:hover img {
-  @apply scale-105;
-}
-
-
-/* ARCHITECTURAL DRAFTING GRID PAPER */
-.bg-grid-pattern {
-  background-size: 64px 64px;
-  background-image: 
-    linear-gradient(to right, rgba(9, 9, 11, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(9, 9, 11, 0.02) 1px, transparent 1px);
-}
-
-.dark .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(250, 250, 250, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(250, 250, 250, 0.015) 1px, transparent 1px);
-}
-
-/* Force white cursor when lightbox is open (overriding light mode theme colors) */
+/* Cursor blanco sobre el visor de imágenes y sobre el hero oscuro */
 body:has(.lightbox-overlay) .custom-cursor-dot {
   background-color: #fafafa !important;
 }
-
 body:has(.lightbox-overlay) .custom-cursor-outline {
-  border-color: rgba(250, 250, 250, 0.3) !important;
+  border-color: rgba(250, 250, 250, 0.35) !important;
   color: #fafafa !important;
 }
 
+/* Subrayado que crece al pasar el mouse */
+.link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-line:hover,
+.group:hover .link-line {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

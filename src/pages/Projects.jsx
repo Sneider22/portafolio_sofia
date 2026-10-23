@@ -1,34 +1,28 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { projectsData } from '../data/projectsData';
 import { ProjectCard } from '../components/ProjectCard';
+import { LineReveal, Reveal } from '../components/Reveal';
 
 export const Projects = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="pt-24 pb-12 px-5 max-w-7xl mx-auto w-full min-h-screen"
-    >
-      {/* Page Header */}
-      <header className="mb-8 border-b border-zinc-150 dark:border-zinc-900 pb-5">
-        <h1 className="text-4xl md:text-5xl font-light tracking-tight text-zinc-950 dark:text-white mb-2">
-          Obras Selectas
+    <div className="mx-auto min-h-screen w-full max-w-7xl px-5 pb-20 pt-32 md:px-8 md:pt-40">
+      <header className="mb-12 flex flex-col justify-between gap-4 border-b border-line pb-8 md:mb-16 md:flex-row md:items-end">
+        <h1 className="font-serif text-6xl font-medium tracking-tight md:text-8xl">
+          <LineReveal animateOnMount lines={[<>Obras <em className="italic text-accent">selectas</em></>]} />
         </h1>
-        <p className="text-zinc-400 dark:text-zinc-500 text-xs font-mono tracking-widest uppercase">
-          Proyectos Académicos · 01 / {String(projectsData.length).padStart(2, '0')}
-        </p>
+        <Reveal delay={0.3}>
+          <p className="eyebrow text-muted">
+            Proyectos académicos · {String(projectsData.length).padStart(2, '0')}
+          </p>
+        </Reveal>
       </header>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
         {projectsData.map((project, idx) => (
           <ProjectCard key={project.slug} project={project} index={idx} />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 export default Projects;

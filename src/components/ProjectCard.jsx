@@ -1,49 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Img } from './Img';
+import { Reveal } from './Reveal';
 
 export const ProjectCard = ({ project, index }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group"
-    >
-      <Link to={`/proyecto/${project.slug}`} className="block hover-target">
-        {/* Image Frame */}
-        <div className="card-img-wrapper overflow-hidden relative aspect-[4/3] border border-zinc-100 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-900/10">
-          <img
-            src={project.heroImage}
+    <Reveal delay={(index % 3) * 0.08} className="group">
+      <Link to={`/proyecto/${project.slug}`} data-cursor="ver" className="hover-target block">
+        <div className="relative aspect-[4/3] overflow-hidden bg-surface">
+          <Img
+            path={project.heroImage}
             alt={project.title}
-            className="w-full h-full object-cover"
-            loading="lazy"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="h-full w-full object-cover transition-transform duration-[1.2s] ease-fluid group-hover:scale-105"
           />
-          {/* Custom Overlay */}
-          <div className="absolute inset-0 bg-zinc-950/20 dark:bg-zinc-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[2px]">
-            <span className="text-white text-xs font-mono uppercase tracking-widest border border-white/20 bg-black/20 px-6 py-2.5 rounded-full transition-transform duration-500 translate-y-3 group-hover:translate-y-0">
-              Ver detalles
-            </span>
-          </div>
+          <span className="absolute left-4 top-4 font-serif text-3xl italic text-white drop-shadow">
+            {String(index + 1).padStart(2, '0')}
+          </span>
         </div>
 
-        {/* Content details */}
-        <div className="mt-4 space-y-1.5">
-          <div className="flex justify-between items-baseline">
-            <h3 className="text-md font-light text-zinc-950 dark:text-white group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors">
-              {project.title}
+        <div className="mt-4">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="font-serif text-2xl font-medium leading-tight">
+              <span className="link-line">{project.title}</span>
             </h3>
-            <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-300 uppercase tracking-widest">
+            <span className="shrink-0 eyebrow text-muted">
               {project.category}
             </span>
           </div>
-          <p className="text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed max-w-sm line-clamp-2 md:line-clamp-3">
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-fg/75 line-clamp-2">
             {project.shortDesc}
           </p>
         </div>
       </Link>
-    </motion.div>
+    </Reveal>
   );
 };
+
 export default ProjectCard;
