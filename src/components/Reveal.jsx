@@ -19,27 +19,29 @@ export const Reveal = ({ children, delay = 0, y = 28, className = '', as = 'div'
   );
 };
 
-// Texto que sube desde detrás de una "máscara", línea por línea
-export const LineReveal = ({ lines, className = '', delay = 0, animateOnMount = false }) => (
-  <span className={className}>
-    {lines.map((line, i) => {
-      const props = animateOnMount
-        ? { animate: { y: 0 } }
-        : { whileInView: { y: 0 }, viewport: { once: true, margin: '-40px' } };
-      return (
+const lineVariants = {
+  hidden: { y: '105%' },
+  visible: (i) => ({ y: 0, transition: { duration: 1.1, delay: i, ease: EASE } }),
+};
+
+// Texto que sube desde detrás de una "máscara", línea por línea.
+// Se observa el contenedor y no el texto: el texto empieza oculto por la máscara y,
+// si ocupa dos renglones (en el teléfono), el navegador nunca lo detectaría en pantalla.
+export const LineReveal = ({ lines, className = '', delay = 0, animateOnMount = false }) => {
+  const props = animateOnMount
+    ? { animate: 'visible' }
+    : { whileInView: 'visible', viewport: { once: true, margin: '-40px' } };
+  return (
+    <motion.span initial="hidden" {...props} className={className}>
+      {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.08em]">
-          <motion.span
-            initial={{ y: '105%' }}
-            {...props}
-            transition={{ duration: 1.1, delay: delay + i * 0.12, ease: EASE }}
-            className="block"
-          >
+          <motion.span variants={lineVariants} custom={delay + i * 0.12} className="block">
             {line}
           </motion.span>
         </span>
-      );
-    })}
-  </span>
-);
+      ))}
+    </motion.span>
+  );
+};
 
 export default Reveal;

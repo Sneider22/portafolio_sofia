@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { projectsData } from '../data/projectsData';
 import { profile } from '../data/profile';
@@ -35,6 +35,24 @@ const SectionLabel = ({ children }) => (
   </p>
 );
 
+// Etiqueta de programa: al tocarla se pinta con el color de su marca
+const SoftwareTag = ({ name, color }) => {
+  const [active, setActive] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => setActive((a) => !a)}
+      aria-pressed={active}
+      style={active ? { backgroundColor: color, borderColor: color } : undefined}
+      className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
+        active ? 'text-white' : 'border-line'
+      }`}
+    >
+      {name}
+    </button>
+  );
+};
+
 export const Home = () => {
   return (
     <div>
@@ -46,11 +64,20 @@ export const Home = () => {
           <SectionLabel>Sobre mi trabajo</SectionLabel>
         </Reveal>
         <h2 className="mt-8 max-w-5xl font-serif text-[clamp(2rem,5.2vw,4.25rem)] font-normal leading-[1.1] tracking-tight">
+          {/* En el teléfono el texto corre seguido; en escritorio va cortado en líneas */}
           <LineReveal
+            className="md:hidden"
             lines={[
-              <>Diseño espacios <em className="italic text-accent">públicos</em> pensados</>,
-              <>para las personas que los recorren:</>,
-              <>terminales, mercados y lugares de encuentro.</>,
+              <>Diseño espacios que no solo se habitan, sino que <em className="italic text-accent">se sienten</em>: entornos donde la forma, la luz y la función se conectan con la experiencia humana.</>,
+            ]}
+          />
+          <LineReveal
+            className="hidden md:inline"
+            lines={[
+              <>Diseño espacios que no solo se habitan,</>,
+              <>sino que <em className="italic text-accent">se sienten</em>: entornos donde</>,
+              <>la forma, la luz y la función se conectan</>,
+              <>con la experiencia humana.</>,
             ]}
           />
         </h2>
@@ -164,7 +191,7 @@ export const Home = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
               {profile.software.map((s) => (
-                <span key={s} className="rounded-full border border-line px-4 py-2 text-sm">{s}</span>
+                <SoftwareTag key={s} name={s} color={profile.softwareColors[s]} />
               ))}
             </div>
             <Link
